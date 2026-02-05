@@ -144,7 +144,7 @@ export function ArtistDrawer({ artistId, onClose }: ArtistDrawerProps) {
                         'flex w-full items-center justify-center gap-2 py-2.5 text-sm font-semibold transition-all duration-200',
                         show.isFavorite
                           ? 'bg-destructive/10 text-destructive hover:bg-destructive/20'
-                          : 'bg-primary text-primary-foreground hover:brightness-110 active:scale-[0.98]'
+                          : 'bg-primary text-primary-foreground hover:brightness-110 active:scale-[1.02]'
                       )}
                     >
                       {show.isFavorite ? (

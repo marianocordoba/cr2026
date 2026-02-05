@@ -10,6 +10,7 @@ import {
   XIcon,
 } from 'lucide-react'
 import Link from 'next/link'
+import { toast } from 'sonner'
 
 import { SpotifyIcon } from '@/components/icons/spotify'
 import {
@@ -50,9 +51,14 @@ export function ShowDrawer({
 
   const toggleFavorite = async () => {
     if (!data?.show) return
-    await db.shows.update(data.show.id, {
-      isFavorite: data.show.isFavorite ? 0 : 1,
-    })
+
+    try {
+      await db.shows.update(data.show.id, {
+        isFavorite: data.show.isFavorite ? 0 : 1,
+      })
+    } catch (e: any) {
+      toast.error(e.toString())
+    }
   }
 
   const isFavorite = data?.show?.isFavorite
@@ -149,7 +155,7 @@ export function ShowDrawer({
                 'flex w-full items-center justify-center gap-2 py-3 font-semibold transition-all duration-200',
                 isFavorite
                   ? 'bg-destructive/10 text-destructive hover:bg-destructive/20'
-                  : 'bg-primary text-primary-foreground hover:brightness-110 active:scale-[0.98]'
+                  : 'bg-primary text-primary-foreground hover:brightness-110 active:scale-[1.02]'
               )}
             >
               {isFavorite ? (

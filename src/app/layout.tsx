@@ -2,8 +2,9 @@ import type { Metadata, Viewport } from 'next'
 
 import { Outfit } from 'next/font/google'
 
-import { env } from '@/env'
+import { Toaster } from '@/components/ui/sonner'
 import '@/styles/globals.css'
+import { env } from '@/env'
 
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-sans' })
 
@@ -53,7 +54,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={outfit.variable}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Toaster />
+      </body>
     </html>
   )
 }

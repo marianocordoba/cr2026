@@ -1,7 +1,7 @@
 'use client'
 
 import { useLiveQuery } from 'dexie-react-hooks'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { ArtistDrawer } from '@/components/artist-drawer'
 import { ArtistList } from '@/components/artist-list'
@@ -11,6 +11,9 @@ import { BOTTOM_NAV_BAR_HEIGHT } from '@/constants'
 import { db, type Artist } from '@/lib/db'
 
 export function ArtistsView() {
+  const [windowHeight, setWindowHeight] = useState(
+    typeof window === 'undefined' ? 0 : window.innerHeight
+  )
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedArtistId, setSelectedArtistId] = useState<number | null>(null)
 
@@ -21,6 +24,17 @@ export function ArtistsView() {
     [],
     []
   )
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowHeight(window.innerHeight)
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
 
   if (!artists) {
     return (
@@ -45,7 +59,7 @@ export function ArtistsView() {
       <div
         className="relative left-0 w-dvw overflow-y-auto"
         style={{
-          height: window.innerHeight - BOTTOM_NAV_BAR_HEIGHT - 96,
+          height: windowHeight - BOTTOM_NAV_BAR_HEIGHT - 96,
           top: 96,
         }}
       >

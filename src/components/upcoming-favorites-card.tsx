@@ -122,7 +122,7 @@ function FavoriteShowItem({
       className={cn(
         'flex w-full items-center gap-3 rounded-xl p-3',
         'bg-secondary/50 hover:bg-secondary transition-colors',
-        'active:scale-[0.98] active:transition-transform'
+        'active:scale-[1.02] active:transition-transform'
       )}
     >
       <div className="size-11 shrink-0 overflow-hidden rounded-lg shadow-sm">
