@@ -58,8 +58,6 @@ async function fetchShows() {
 
 // Sync functions
 export async function checkNeedsSync() {
-  // await db.delete()
-
   // Always sync if database is empty (first run or failed previous sync)
   const dayCount = await db.days.count()
   if (dayCount === 0) return true
