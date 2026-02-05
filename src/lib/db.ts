@@ -1,32 +1,33 @@
-import Dexie, { EntityTable } from 'dexie'
+import type { EntityTable } from 'dexie'
+import Dexie from 'dexie'
 
-export type Meta = {
+export interface Meta {
   key: string
   value: string
 }
 
-export type Day = {
+export interface Day {
   id: number
   name: string
   startsAt: string
   endsAt: string
 }
 
-export type Artist = {
+export interface Artist {
   id: number
   name: string
   image: string
   spotify: string
 }
 
-export type Stage = {
+export interface Stage {
   id: number
   name: string
   dayIds: number[]
   order: number
 }
 
-export type Show = {
+export interface Show {
   id: number
   title: string
   dayId: number
@@ -48,9 +49,9 @@ export const db = new Dexie('cr2026', {
 }
 
 db.version(1).stores({
-  meta: '&key,value',
-  days: '++id,name,startsAt,endsAt',
   artists: '++id,name,image,spotify',
-  stages: '++id,name,*dayIds,order',
+  days: '++id,name,startsAt,endsAt',
+  meta: '&key,value',
   shows: '++id,title,dayId,stageId,*artistIds,startsAt,endsAt,isFavorite',
+  stages: '++id,name,*dayIds,order',
 })

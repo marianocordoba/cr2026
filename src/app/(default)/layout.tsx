@@ -1,6 +1,25 @@
+'use client'
+
+import dynamic from 'next/dynamic'
+
 import { BottomNavBar } from '@/components/bottom-nav-bar'
-import { DisclaimerDrawer } from '@/components/disclaimer-drawer'
-import { SyncOverlay } from '@/components/sync-overlay'
+
+// Lazy load non-critical overlays that only activate conditionally
+const SyncOverlay = dynamic(
+  () =>
+    import('@/components/sync-overlay').then((mod) => ({
+      default: mod.SyncOverlay,
+    })),
+  { ssr: false }
+)
+
+const DisclaimerDrawer = dynamic(
+  () =>
+    import('@/components/disclaimer-drawer').then((mod) => ({
+      default: mod.DisclaimerDrawer,
+    })),
+  { ssr: false }
+)
 
 export default function DefaultLayout({
   children,

@@ -1,14 +1,23 @@
 'use client'
 
 import { useLiveQuery } from 'dexie-react-hooks'
-import { useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
+import { useEffect, useMemo, useState } from 'react'
 
 import { DaySelector } from '@/components/day-selector'
 import { Schedule } from '@/components/schedule'
-import { ShowDrawer } from '@/components/show-drawer'
 import { Spinner } from '@/components/ui/spinner'
 import { BOTTOM_NAV_BAR_HEIGHT, NAV_BAR_HEIGHT } from '@/constants'
 import { db } from '@/lib/db'
+
+// Lazy load drawer - only loads when user clicks a show
+const ShowDrawer = dynamic(
+  () =>
+    import('@/components/show-drawer').then((mod) => ({
+      default: mod.ShowDrawer,
+    })),
+  { ssr: false }
+)
 
 export const ScheduleView = () => {
   const [windowHeight, setWindowHeight] = useState(
@@ -17,42 +26,53 @@ export const ScheduleView = () => {
   const [selectedDayId, setSelectedDayId] = useState<number | null>(null)
   const [selectedShowId, setSelectedShowId] = useState<number | null>(null)
 
-  const days = useLiveQuery(
-    async () => {
-      return await db.days.toArray()
-    },
-    [],
-    []
-  )
+  const days = useLiveQuery(async () => await db.days.toArray(), [], [])
 
   const selectedDay = useLiveQuery(async () => {
-    if (!selectedDayId) return null
+    if (!selectedDayId) {
+      return null
+    }
     return await db.days.get(selectedDayId)
   }, [selectedDayId])
 
+  // Derive primitive ID instead of passing entire object
+  const selectedDayIdForQuery = useMemo(
+    () => selectedDay?.id,
+    [selectedDay?.id]
+  )
+
   const stages = useLiveQuery(
     async () => {
-      if (!selectedDay) return []
+      if (!selectedDayIdForQuery) {
+        return []
+      }
       return await db.stages
         .where('dayIds')
-        .anyOf(selectedDay.id)
+        .anyOf(selectedDayIdForQuery)
         .sortBy('order')
     },
-    [selectedDay],
+    [selectedDayIdForQuery],
     []
   )
 
   const shows = useLiveQuery(
     async () => {
-      if (!selectedDay) return []
-      return await db.shows.where('dayId').equals(selectedDay.id).toArray()
+      if (!selectedDayIdForQuery) {
+        return []
+      }
+      return await db.shows
+        .where('dayId')
+        .equals(selectedDayIdForQuery)
+        .toArray()
     },
-    [selectedDay],
+    [selectedDayIdForQuery],
     []
   )
 
   useEffect(() => {
-    if (days.length === 0 || selectedDayId !== null) return
+    if (days.length === 0 || selectedDayId !== null) {
+      return
+    }
     const now = new Date()
     const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`
     const currentDay = days.find((day) => day.startsAt.startsWith(today))
@@ -100,10 +120,12 @@ export const ScheduleView = () => {
         onShowClick={(show) => setSelectedShowId(show.id)}
       />
 
-      <ShowDrawer
-        showId={selectedShowId}
-        onClose={() => setSelectedShowId(null)}
-      />
+      {selectedShowId !== null && (
+        <ShowDrawer
+          showId={selectedShowId}
+          onClose={() => setSelectedShowId(null)}
+        />
+      )}
     </main>
   )
 }

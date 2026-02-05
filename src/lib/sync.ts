@@ -2,9 +2,10 @@ import { isBefore } from 'date-fns'
 
 import { env } from '@/env'
 
-import { db, Show } from './db'
+import type { Show } from './db'
+import { db } from './db'
 
-const TIMEOUT = 10000
+const TIMEOUT = 10_000
 
 // Fetch functions
 async function $fetch(url: string) {
@@ -13,7 +14,9 @@ async function $fetch(url: string) {
       signal: AbortSignal.timeout(TIMEOUT),
     })
 
-    if (!response.ok) return null
+    if (!response.ok) {
+      return null
+    }
 
     return await response.json()
   } catch {
@@ -25,7 +28,9 @@ async function $fetch(url: string) {
 async function fetchBundledData(filename: string) {
   try {
     const response = await fetch(`/data/${filename}`)
-    if (!response.ok) return null
+    if (!response.ok) {
+      return null
+    }
     return await response.json()
   } catch {
     return null
@@ -60,15 +65,23 @@ async function fetchShows() {
 export async function checkNeedsSync() {
   // Always sync if database is empty (first run or failed previous sync)
   const dayCount = await db.days.count()
-  if (dayCount === 0) return true
+  if (dayCount === 0) {
+    return true
+  }
 
-  if (!navigator.onLine) return false
+  if (!navigator.onLine) {
+    return false
+  }
 
   const remoteMeta = await fetchMeta()
   const lastSync = await db.meta.get('lastSync')
 
-  if (!remoteMeta) return false
-  if (!lastSync) return true
+  if (!remoteMeta) {
+    return false
+  }
+  if (!lastSync) {
+    return true
+  }
 
   if (isBefore(new Date(lastSync.value), new Date(remoteMeta.lastUpdate))) {
     return true

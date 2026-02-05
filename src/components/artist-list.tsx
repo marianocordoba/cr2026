@@ -2,9 +2,10 @@
 
 import { MusicIcon } from 'lucide-react'
 import { motion } from 'motion/react'
+import { memo } from 'react'
 
 import { ArtistCard } from '@/components/artist-card'
-import { type Artist } from '@/lib/db'
+import type { Artist } from '@/lib/db'
 
 type ArtistListProps = Readonly<{
   artists: Artist[]
@@ -23,7 +24,12 @@ function groupArtistsByLetter(artists: Artist[]): GroupedArtists {
   }, {} as GroupedArtists)
 }
 
-function StickyHeader({ letter }: { letter: string }) {
+// Memoized to prevent re-creation
+const StickyHeader = memo(function StickyHeader({
+  letter,
+}: {
+  letter: string
+}) {
   return (
     <div className="sticky top-0 h-12">
       <div className="absolute inset-0 h-full w-full bg-white" />
@@ -34,9 +40,14 @@ function StickyHeader({ letter }: { letter: string }) {
       </div>
     </div>
   )
-}
+})
 
-function EmptyState({ searchTerm }: { searchTerm: string }) {
+// Memoized to prevent re-creation
+const EmptyState = memo(function EmptyState({
+  searchTerm,
+}: {
+  searchTerm: string
+}) {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
@@ -53,21 +64,25 @@ function EmptyState({ searchTerm }: { searchTerm: string }) {
       </p>
     </motion.div>
   )
-}
+})
 
-export function ArtistList({
+export const ArtistList = ({
   artists,
   onArtistClick,
   searchTerm,
-}: ArtistListProps) {
+}: ArtistListProps) => {
   if (artists.length === 0 && searchTerm.length > 0) {
     return <EmptyState searchTerm={searchTerm} />
   }
 
   const grouped = groupArtistsByLetter(artists)
-  const letters = Object.keys(grouped).sort((a, b) => {
-    if (a === '#') return 1
-    if (b === '#') return -1
+  const letters = Object.keys(grouped).toSorted((a, b) => {
+    if (a === '#') {
+      return 1
+    }
+    if (b === '#') {
+      return -1
+    }
     return a.localeCompare(b)
   })
 
@@ -79,6 +94,7 @@ export function ArtistList({
         <section
           key={letter}
           aria-label={`Artistas que empiezan con ${letter}`}
+          style={{ containIntrinsicSize: '0 500px', contentVisibility: 'auto' }}
         >
           <StickyHeader letter={letter} />
           <div>

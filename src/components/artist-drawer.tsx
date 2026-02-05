@@ -9,6 +9,7 @@ import {
   MapPinIcon,
   XIcon,
 } from 'lucide-react'
+import Image from 'next/image'
 import Link from 'next/link'
 
 import { SpotifyIcon } from '@/components/icons/spotify'
@@ -26,12 +27,16 @@ type ArtistDrawerProps = Readonly<{
   onClose: () => void
 }>
 
-export function ArtistDrawer({ artistId, onClose }: ArtistDrawerProps) {
+export const ArtistDrawer = ({ artistId, onClose }: ArtistDrawerProps) => {
   const data = useLiveQuery(async () => {
-    if (!artistId) return null
+    if (!artistId) {
+      return null
+    }
 
     const artist = await db.artists.get(artistId)
-    if (!artist) return null
+    if (!artist) {
+      return null
+    }
 
     const shows = await db.shows.where('artistIds').equals(artistId).toArray()
 
@@ -41,7 +46,7 @@ export function ArtistDrawer({ artistId, onClose }: ArtistDrawerProps) {
           db.days.get(show.dayId),
           db.stages.get(show.stageId),
         ])
-        return { show, day, stage }
+        return { day, show, stage }
       })
     )
 
@@ -52,7 +57,9 @@ export function ArtistDrawer({ artistId, onClose }: ArtistDrawerProps) {
     await db.shows.update(show.id, { isFavorite: show.isFavorite ? 0 : 1 })
   }
 
-  if (!data?.artist) return null
+  if (!data?.artist) {
+    return null
+  }
 
   const { artist, shows } = data
 
@@ -80,9 +87,11 @@ export function ArtistDrawer({ artistId, onClose }: ArtistDrawerProps) {
           <div className="flex justify-center">
             <div className="size-32 overflow-hidden rounded-2xl shadow-2xl">
               {artist.image ? (
-                <img
+                <Image
                   src={`/images/artists/${artist.image}`}
                   alt={artist.name}
+                  width={128}
+                  height={128}
                   className="size-full object-cover"
                 />
               ) : (

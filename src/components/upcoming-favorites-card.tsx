@@ -15,10 +15,11 @@ import {
   MapPinIcon,
 } from 'lucide-react'
 import { motion } from 'motion/react'
+import dynamic from 'next/dynamic'
+import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 
-import { ShowDrawer } from '@/components/show-drawer'
 import { Button } from '@/components/ui/button'
 import {
   Card,
@@ -31,7 +32,16 @@ import { Spinner } from '@/components/ui/spinner'
 import { db, type Artist, type Day, type Show, type Stage } from '@/lib/db'
 import { cn } from '@/lib/utils'
 
-type UpcomingFavoriteShow = {
+// Lazy load drawer - only loads when user clicks a show
+const ShowDrawer = dynamic(
+  async () => {
+    const mod = await import('@/components/show-drawer')
+    return { default: mod.ShowDrawer }
+  },
+  { ssr: false }
+)
+
+interface UpcomingFavoriteShow {
   show: Show
   day: Day
   stage: Stage
@@ -44,7 +54,7 @@ type FavoriteResult =
   | { status: 'all-past' }
   | { status: 'has-upcoming'; shows: UpcomingFavoriteShow[] }
 
-function useUpcomingFavorites(): FavoriteResult {
+const useUpcomingFavorites = (): FavoriteResult => {
   const result = useLiveQuery(async () => {
     const favoriteShows = await db.shows.where('isFavorite').equals(1).toArray()
     const sortedShows = favoriteShows.toSorted(
@@ -75,11 +85,14 @@ function useUpcomingFavorites(): FavoriteResult {
           db.stages.get(show.stageId),
           db.artists.where('id').anyOf(show.artistIds).toArray(),
         ])
-        return { show, day: day!, stage: stage!, artists }
+        if (!day || !stage) {
+          throw new Error('Missing day or stage data')
+        }
+        return { artists, day, show, stage }
       })
     )
 
-    return { status: 'has-upcoming' as const, shows: enriched }
+    return { shows: enriched, status: 'has-upcoming' as const }
   }, [])
 
   if (result === undefined) {
@@ -89,7 +102,7 @@ function useUpcomingFavorites(): FavoriteResult {
   return result
 }
 
-function FavoriteShowItem({
+const FavoriteShowItem = ({
   data,
   index,
   onClick,
@@ -97,9 +110,9 @@ function FavoriteShowItem({
   data: UpcomingFavoriteShow
   index: number
   onClick: () => void
-}>) {
+}>) => {
   const { show, day, stage, artists } = data
-  const firstArtist = artists[0]
+  const [firstArtist] = artists
 
   const startsAtDate = new Date(show.startsAt)
   const isPast = startsAtDate < new Date()
@@ -108,15 +121,22 @@ function FavoriteShowItem({
     locale: es,
   })
 
+  // Preload show drawer on hover/focus
+  const handleMouseEnter = useCallback(() => {
+    import('@/components/show-drawer')
+  }, [])
+
   return (
     <motion.button
       type="button"
       onClick={onClick}
+      onMouseEnter={handleMouseEnter}
+      onFocus={handleMouseEnter}
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{
-        duration: 0.3,
         delay: Math.min(index * 0.05, 0.25),
+        duration: 0.3,
         ease: [0.25, 0.1, 0.25, 1],
       }}
       className={cn(
@@ -127,9 +147,11 @@ function FavoriteShowItem({
     >
       <div className="size-11 shrink-0 overflow-hidden rounded-lg shadow-sm">
         {firstArtist?.image ? (
-          <img
+          <Image
             src={`/images/artists/${firstArtist.image}`}
             alt={firstArtist.name}
+            width={44}
+            height={44}
             className="size-full object-cover"
           />
         ) : (
@@ -172,51 +194,53 @@ function FavoriteShowItem({
   )
 }
 
-function NoFavoritesState() {
-  return (
-    <div className="flex flex-col items-center gap-3 py-6 text-center">
-      <div className="bg-muted flex size-12 items-center justify-center rounded-full">
-        <HeartIcon className="text-muted-foreground size-6" />
-      </div>
-      <div className="space-y-1">
-        <p className="text-foreground font-medium">Sin favoritos</p>
-        <p className="text-muted-foreground text-sm">
-          Agregá shows desde la grilla para verlos acá
-        </p>
-      </div>
+const NoFavoritesState = () => (
+  <div className="flex flex-col items-center gap-3 py-6 text-center">
+    <div className="bg-muted flex size-12 items-center justify-center rounded-full">
+      <HeartIcon className="text-muted-foreground size-6" />
     </div>
-  )
-}
-
-function AllPastState() {
-  return (
-    <div className="flex flex-col items-center gap-3 py-6 text-center">
-      <div className="bg-muted flex size-12 items-center justify-center rounded-full">
-        <CalendarCheckIcon className="text-muted-foreground size-6" />
-      </div>
-      <div className="space-y-1">
-        <p className="text-foreground font-medium">Tus favoritos ya tocaron</p>
-        <p className="text-muted-foreground text-sm">
-          Explorá la grilla para agregar nuevos shows
-        </p>
-      </div>
+    <div className="space-y-1">
+      <p className="text-foreground font-medium">Sin favoritos</p>
+      <p className="text-muted-foreground text-sm">
+        Agregá shows desde la grilla para verlos acá
+      </p>
     </div>
-  )
-}
+  </div>
+)
 
-function LoadingState() {
-  return (
-    <div className="flex items-center justify-center py-8">
-      <Spinner className="text-muted-foreground size-6" />
+const AllPastState = () => (
+  <div className="flex flex-col items-center gap-3 py-6 text-center">
+    <div className="bg-muted flex size-12 items-center justify-center rounded-full">
+      <CalendarCheckIcon className="text-muted-foreground size-6" />
     </div>
-  )
-}
+    <div className="space-y-1">
+      <p className="text-foreground font-medium">Tus favoritos ya tocaron</p>
+      <p className="text-muted-foreground text-sm">
+        Explorá la grilla para agregar nuevos shows
+      </p>
+    </div>
+  </div>
+)
 
-export function UpcomingFavoritesCard({
+const LoadingState = () => (
+  <div className="flex items-center justify-center py-8">
+    <Spinner className="text-muted-foreground size-6" />
+  </div>
+)
+
+export const UpcomingFavoritesCard = ({
   className,
-}: Readonly<{ className?: string }>) {
+}: Readonly<{ className?: string }>) => {
   const [selectedShowId, setSelectedShowId] = useState<number | null>(null)
   const result = useUpcomingFavorites()
+
+  const handleShowClick = useCallback((showId: number) => {
+    setSelectedShowId(showId)
+  }, [])
+
+  const handleDrawerClose = useCallback(() => {
+    setSelectedShowId(null)
+  }, [])
 
   return (
     <>
@@ -238,7 +262,7 @@ export function UpcomingFavoritesCard({
                   key={item.show.id}
                   data={item}
                   index={index}
-                  onClick={() => setSelectedShowId(item.show.id)}
+                  onClick={() => handleShowClick(item.show.id)}
                 />
               ))}
             </div>
@@ -255,10 +279,9 @@ export function UpcomingFavoritesCard({
         </CardFooter>
       </Card>
 
-      <ShowDrawer
-        showId={selectedShowId}
-        onClose={() => setSelectedShowId(null)}
-      />
+      {selectedShowId !== null && (
+        <ShowDrawer showId={selectedShowId} onClose={handleDrawerClose} />
+      )}
     </>
   )
 }

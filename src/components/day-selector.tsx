@@ -5,22 +5,21 @@ import { Button } from '@/components/ui/button'
 import { NAV_BAR_HEIGHT } from '@/constants'
 import { db } from '@/lib/db'
 
-export function DaySelector({
+export const DaySelector = ({
   selectedDayId,
   onDayChange,
 }: {
   selectedDayId: number
   onDayChange: (dayId: number) => void
-}) {
-  const days =
-    useLiveQuery(async () => {
-      return await db.days.toArray()
-    }, []) || []
+}) => {
+  const days = useLiveQuery(async () => await db.days.toArray(), []) || []
 
   const selectedDay = days.find((day) => day.id === selectedDayId)
   const otherDay = days.find((day) => day.id !== selectedDayId)
 
-  if (!selectedDay || !otherDay) return null
+  if (!selectedDay || !otherDay) {
+    return null
+  }
 
   return (
     <div

@@ -22,18 +22,22 @@ import {
 import { db } from '@/lib/db'
 import { cn } from '@/lib/utils'
 
-export function ShowDrawer({
+export const ShowDrawer = ({
   showId,
   onClose,
 }: {
   showId: number | null
   onClose: () => void
-}) {
+}) => {
   const data = useLiveQuery(async () => {
-    if (!showId) return null
+    if (!showId) {
+      return null
+    }
 
     const show = await db.shows.get(showId)
-    if (!show) return null
+    if (!show) {
+      return null
+    }
 
     const [day, stage, artists] = await Promise.all([
       db.days.get(show.dayId),
@@ -42,28 +46,32 @@ export function ShowDrawer({
     ])
 
     return {
-      show,
-      day,
-      stage,
       artists,
+      day,
+      show,
+      stage,
     }
   }, [showId])
 
   const toggleFavorite = async () => {
-    if (!data?.show) return
+    if (!data?.show) {
+      return
+    }
 
     try {
       await db.shows.update(data.show.id, {
         isFavorite: data.show.isFavorite ? 0 : 1,
       })
-    } catch (e: any) {
-      toast.error(e.toString())
+    } catch (error: any) {
+      toast.error(error.toString())
     }
   }
 
   const isFavorite = data?.show?.isFavorite
 
-  if (!data?.show || !data?.day || !data?.stage || !data?.artists) return null
+  if (!data?.show || !data?.day || !data?.stage || !data?.artists) {
+    return null
+  }
 
   return (
     <Drawer open={data !== null} onOpenChange={onClose}>

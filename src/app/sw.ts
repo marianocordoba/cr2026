@@ -10,11 +10,11 @@ declare global {
 declare const self: WorkerGlobalScope
 
 const serwist = new Serwist({
-  precacheEntries: self.__SW_MANIFEST,
-  skipWaiting: true,
   clientsClaim: true,
   navigationPreload: true,
+  precacheEntries: self.__SW_MANIFEST,
   runtimeCaching: defaultCache,
+  skipWaiting: true,
 })
 
 serwist.addEventListeners()

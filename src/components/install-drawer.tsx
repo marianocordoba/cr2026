@@ -25,9 +25,8 @@ interface InstallDrawerProps {
 
 const getInstructions = (platform: PlatformType) => {
   switch (platform) {
-    case 'ios':
+    case 'ios': {
       return {
-        title: 'Instalar en iOS',
         description:
           'Seguí estos pasos para instalar la app en tu dispositivo:',
         steps: [
@@ -42,10 +41,11 @@ const getInstructions = (platform: PlatformType) => {
             text: 'Confirmá tocando "Agregar" en la esquina superior derecha',
           },
         ],
+        title: 'Instalar en iOS',
       }
-    case 'android':
+    }
+    case 'android': {
       return {
-        title: 'Instalar en Android',
         description: 'Seguí estos pasos para instalar la app:',
         steps: [
           {
@@ -58,10 +58,11 @@ const getInstructions = (platform: PlatformType) => {
             text: 'Confirmá la instalación en el mensaje que aparece',
           },
         ],
+        title: 'Instalar en Android',
       }
-    case 'desktop':
+    }
+    case 'desktop': {
       return {
-        title: 'Instalar en tu computadora',
         description: 'Instalá la app desde tu navegador:',
         steps: [
           {
@@ -74,10 +75,11 @@ const getInstructions = (platform: PlatformType) => {
             text: 'La app se abrirá en una ventana independiente',
           },
         ],
+        title: 'Instalar en tu computadora',
       }
-    default:
+    }
+    default: {
       return {
-        title: 'Instalar aplicación',
         description: 'Esta app se puede instalar en tu dispositivo:',
         steps: [
           {
@@ -90,15 +92,17 @@ const getInstructions = (platform: PlatformType) => {
             text: 'Seguí las instrucciones de tu navegador para completar la instalación',
           },
         ],
+        title: 'Instalar aplicación',
       }
+    }
   }
 }
 
-export function InstallDrawer({
+export const InstallDrawer = ({
   isOpen,
   onClose,
   platformType,
-}: InstallDrawerProps) {
+}: InstallDrawerProps) => {
   const instructions = getInstructions(platformType)
 
   return (
@@ -106,8 +110,8 @@ export function InstallDrawer({
       <DrawerContent className="mx-auto max-w-lg">
         <DrawerHeader className="items-center gap-3 pt-6">
           <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3, ease: EASE }}
             className="bg-primary/10 flex size-12 items-center justify-center rounded-full"
           >

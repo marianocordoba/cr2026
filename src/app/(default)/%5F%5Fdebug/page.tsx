@@ -3,8 +3,8 @@
 import { Button } from '@/components/ui/button'
 import { db } from '@/lib/db'
 
-export default function DebugPage() {
-  const deleteDatabase = async () => {
+const DebugPage = () => {
+  const deleteDatabase = () => {
     db.delete()
   }
   return (
@@ -15,3 +15,5 @@ export default function DebugPage() {
     </main>
   )
 }
+
+export default DebugPage

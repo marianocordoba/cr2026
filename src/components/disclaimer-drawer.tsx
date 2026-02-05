@@ -17,14 +17,16 @@ import { db } from '@/lib/db'
 
 const EASE = [0.25, 0.1, 0.25, 1] as const
 
-export function DisclaimerDrawer() {
+export const DisclaimerDrawer = () => {
   const result = useLiveQuery(async () => {
     const record = await db.meta.get('disclaimerAcknowledged')
     return record ?? null
   }, [])
 
   // Still loading from IndexedDB — render nothing to avoid flash
-  if (result === undefined) return null
+  if (result === undefined) {
+    return null
+  }
 
   const isOpen = result === null
 
@@ -40,8 +42,8 @@ export function DisclaimerDrawer() {
       <DrawerContent className="mx-auto max-w-lg">
         <DrawerHeader className="items-center gap-3 pt-6">
           <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3, ease: EASE }}
             className="flex size-12 items-center justify-center rounded-full bg-[#DD5227]/10"
           >

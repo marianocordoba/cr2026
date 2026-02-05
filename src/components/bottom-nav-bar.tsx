@@ -24,23 +24,21 @@ const BottomNavBarItem = ({
   icon: React.ReactNode
   href: string
   isActive: boolean
-}>) => {
-  return (
-    <Link href={href}>
-      <div className="relative flex size-14 flex-col items-center justify-center rounded-lg text-white">
-        {isActive && (
-          <motion.div
-            className="bg-primary absolute inset-0 -z-10 rounded-lg"
-            layoutId="bottom-nav-indicator"
-            transition={{ type: 'spring', stiffness: 350, damping: 30 }}
-          />
-        )}
-        {icon}
-        <span className="text-[10px]">{title}</span>
-      </div>
-    </Link>
-  )
-}
+}>) => (
+  <Link href={href}>
+    <div className="relative flex size-14 flex-col items-center justify-center rounded-lg text-white">
+      {isActive && (
+        <motion.div
+          className="bg-primary absolute inset-0 -z-10 rounded-lg"
+          layoutId="bottom-nav-indicator"
+          transition={{ damping: 30, stiffness: 350, type: 'spring' }}
+        />
+      )}
+      {icon}
+      <span className="text-[10px]">{title}</span>
+    </div>
+  </Link>
+)
 
 const BottomNavBarAction = ({
   title,
@@ -50,16 +48,14 @@ const BottomNavBarAction = ({
   title: string
   icon: React.ReactNode
   onClick: () => void
-}>) => {
-  return (
-    <button onClick={onClick} type="button" aria-label={title}>
-      <div className="relative flex size-14 flex-col items-center justify-center rounded-lg text-white">
-        {icon}
-        <span className="text-[10px]">{title}</span>
-      </div>
-    </button>
-  )
-}
+}>) => (
+  <button onClick={onClick} type="button" aria-label={title}>
+    <div className="relative flex size-14 flex-col items-center justify-center rounded-lg text-white">
+      {icon}
+      <span className="text-[10px]">{title}</span>
+    </div>
+  </button>
+)
 
 export const BottomNavBar = () => {
   const pathname = usePathname()

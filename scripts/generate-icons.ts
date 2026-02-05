@@ -4,7 +4,7 @@ import sharp from 'sharp'
 const INPUT = resolve(import.meta.dirname, '../src/app/icon.svg')
 const OUTPUT_DIR = resolve(import.meta.dirname, '../public/icons')
 
-const BACKGROUND_COLOR = { r: 9, g: 9, b: 11, alpha: 1 }
+const BACKGROUND_COLOR = { alpha: 1, b: 11, g: 9, r: 9 }
 
 const icons = [
   { name: 'icon-192x192.png', size: 192 },
@@ -36,13 +36,13 @@ for (const icon of maskableIcons) {
 
   await sharp({
     create: {
-      width: icon.size,
-      height: icon.size,
-      channels: 4,
       background: BACKGROUND_COLOR,
+      channels: 4,
+      height: icon.size,
+      width: icon.size,
     },
   })
-    .composite([{ input: resized, gravity: 'centre' }])
+    .composite([{ gravity: 'centre', input: resized }])
     .png()
     .toFile(resolve(OUTPUT_DIR, icon.name))
   console.log(`Generated ${icon.name}`)

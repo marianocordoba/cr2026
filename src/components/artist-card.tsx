@@ -2,8 +2,9 @@
 
 import { ChevronRightIcon } from 'lucide-react'
 import { motion } from 'motion/react'
+import { useCallback } from 'react'
 
-import { type Artist } from '@/lib/db'
+import type { Artist } from '@/lib/db'
 import { cn } from '@/lib/utils'
 
 type ArtistCardProps = Readonly<{
@@ -12,21 +13,29 @@ type ArtistCardProps = Readonly<{
   index?: number
 }>
 
-export function ArtistCard({ artist, onClick, index = 0 }: ArtistCardProps) {
+export const ArtistCard = ({ artist, onClick, index = 0 }: ArtistCardProps) => {
   const initials = artist.name
     .split(' ')
     .map((word) => word[0])
     .join('')
 
+  // Preload the drawer on hover/focus
+  const handleMouseEnter = useCallback(() => {
+    // Dynamic import starts loading but doesn't render
+    import('@/components/artist-drawer')
+  }, [])
+
   return (
     <motion.button
       type="button"
       onClick={onClick}
+      onMouseEnter={handleMouseEnter}
+      onFocus={handleMouseEnter}
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{
-        duration: 0.3,
         delay: Math.min(index * 0.03, 0.3),
+        duration: 0.3,
         ease: [0.25, 0.1, 0.25, 1],
       }}
       className={cn(
