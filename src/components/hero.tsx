@@ -9,7 +9,7 @@ const EASE = [0.25, 0.1, 0.25, 1] as const
 
 export function Hero() {
   return (
-    <section className="hero-noise relative flex flex-col items-center overflow-hidden rounded-b-[2rem] bg-linear-to-br from-zinc-800 to-zinc-950 px-6 py-6 lg:rounded-none">
+    <section className="hero-noise relative flex flex-col items-center overflow-hidden rounded-b-[2rem] bg-linear-to-b from-zinc-800 to-zinc-950 px-6 py-6 lg:rounded-none">
       {/* Radial spotlight behind logo */}
       <div className="hero-spotlight pointer-events-none absolute inset-0 z-2" />
 
