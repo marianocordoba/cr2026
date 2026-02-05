@@ -4,8 +4,8 @@ import { differenceInSeconds } from 'date-fns'
 import { motion } from 'motion/react'
 import { useEffect, useState } from 'react'
 
-/** Cosquín Rock 2026 — Day 1 gates open (Argentina, UTC-3) */
-const EVENT_START = new Date('2026-02-14T17:00:00-03:00')
+/** Cosquín Rock 2026 — Day 1 gates open */
+const EVENT_START = new Date('2026-02-14T14:00:00-03:00')
 
 const EASE = [0.25, 0.1, 0.25, 1] as const
 

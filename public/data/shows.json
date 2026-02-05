@@ -1,0 +1,1032 @@
+[
+  {
+    "id": 1,
+    "title": "Golo's Band",
+    "dayId": 1,
+    "stageId": 1,
+    "artistIds": [1],
+    "startsAt": "2026-02-14T14:15:00",
+    "endsAt": "2026-02-14T14:55:00"
+  },
+  {
+    "id": 2,
+    "title": "Los Mentidores",
+    "dayId": 1,
+    "stageId": 1,
+    "artistIds": [2],
+    "startsAt": "2026-02-14T15:05:00",
+    "endsAt": "2026-02-14T15:45:00"
+  },
+  {
+    "id": 3,
+    "title": "Las Witches",
+    "dayId": 1,
+    "stageId": 1,
+    "artistIds": [3],
+    "startsAt": "2026-02-14T15:55:00",
+    "endsAt": "2026-02-14T16:40:00"
+  },
+  {
+    "id": 4,
+    "title": "Le Dracs",
+    "dayId": 1,
+    "stageId": 1,
+    "artistIds": [4],
+    "startsAt": "2026-02-14T16:50:00",
+    "endsAt": "2026-02-14T17:35:00"
+  },
+  {
+    "id": 5,
+    "title": "Perro Suizo",
+    "dayId": 1,
+    "stageId": 1,
+    "artistIds": [5],
+    "startsAt": "2026-02-14T17:45:00",
+    "endsAt": "2026-02-14T18:30:00"
+  },
+  {
+    "id": 6,
+    "title": "Misty Soul Choir",
+    "dayId": 1,
+    "stageId": 1,
+    "artistIds": [6],
+    "startsAt": "2026-02-14T18:40:00",
+    "endsAt": "2026-02-14T19:25:00"
+  },
+  {
+    "id": 7,
+    "title": "Tango & Roll",
+    "dayId": 1,
+    "stageId": 1,
+    "artistIds": [7],
+    "startsAt": "2026-02-14T19:35:00",
+    "endsAt": "2026-02-14T20:20:00"
+  },
+  {
+    "id": 8,
+    "title": "Wayra Iglesias",
+    "dayId": 1,
+    "stageId": 1,
+    "artistIds": [8],
+    "startsAt": "2026-02-14T20:30:00",
+    "endsAt": "2026-02-14T21:15:00"
+  },
+  {
+    "id": 9,
+    "title": "Los Espíritus",
+    "dayId": 1,
+    "stageId": 1,
+    "artistIds": [9],
+    "startsAt": "2026-02-14T21:25:00",
+    "endsAt": "2026-02-14T22:20:00"
+  },
+  {
+    "id": 10,
+    "title": "Piti Fernandez",
+    "dayId": 1,
+    "stageId": 1,
+    "artistIds": [10],
+    "startsAt": "2026-02-14T22:30:00",
+    "endsAt": "2026-02-14T23:25:00"
+  },
+  {
+    "id": 11,
+    "title": "Les Diabolettes",
+    "dayId": 1,
+    "stageId": 1,
+    "artistIds": [11],
+    "startsAt": "2026-02-14T23:35:00",
+    "endsAt": "2026-02-15T00:35:00"
+  },
+
+  {
+    "id": 12,
+    "title": "Fantasmagoría",
+    "dayId": 1,
+    "stageId": 2,
+    "artistIds": [12],
+    "startsAt": "2026-02-14T14:30:00",
+    "endsAt": "2026-02-14T15:10:00"
+  },
+  {
+    "id": 13,
+    "title": "La Mississippi",
+    "dayId": 1,
+    "stageId": 2,
+    "artistIds": [13],
+    "startsAt": "2026-02-14T15:20:00",
+    "endsAt": "2026-02-14T16:20:00"
+  },
+  {
+    "id": 14,
+    "title": "Emi",
+    "dayId": 1,
+    "stageId": 2,
+    "artistIds": [14],
+    "startsAt": "2026-02-14T16:30:00",
+    "endsAt": "2026-02-14T17:30:00"
+  },
+  {
+    "id": 15,
+    "title": "Cruzando el Charco",
+    "dayId": 1,
+    "stageId": 2,
+    "artistIds": [15],
+    "startsAt": "2026-02-14T17:50:00",
+    "endsAt": "2026-02-14T18:50:00"
+  },
+  {
+    "id": 16,
+    "title": "Ciro y Los Persas",
+    "dayId": 1,
+    "stageId": 2,
+    "artistIds": [16],
+    "startsAt": "2026-02-14T19:40:00",
+    "endsAt": "2026-02-14T20:40:00"
+  },
+  {
+    "id": 17,
+    "title": "La Vela Puerca",
+    "dayId": 1,
+    "stageId": 2,
+    "artistIds": [17],
+    "startsAt": "2026-02-14T21:40:00",
+    "endsAt": "2026-02-14T22:40:00"
+  },
+  {
+    "id": 18,
+    "title": "Las Pelotas",
+    "dayId": 1,
+    "stageId": 2,
+    "artistIds": [18],
+    "startsAt": "2026-02-14T23:20:00",
+    "endsAt": "2026-02-15T00:20:00"
+  },
+  {
+    "id": 19,
+    "title": "Viejas Locas / Jóvenes Pordioseros x Fachi y Abel",
+    "dayId": 1,
+    "stageId": 2,
+    "artistIds": [19, 20],
+    "startsAt": "2026-02-15T00:40:00",
+    "endsAt": "2026-02-15T01:40:00"
+  },
+
+  {
+    "id": 20,
+    "title": "Claudio Ricci",
+    "dayId": 1,
+    "stageId": 3,
+    "artistIds": [21],
+    "startsAt": "2026-02-14T16:00:00",
+    "endsAt": "2026-02-14T16:50:00"
+  },
+  {
+    "id": 21,
+    "title": "Valentin Huedo B2B Bruz",
+    "dayId": 1,
+    "stageId": 3,
+    "artistIds": [22, 23],
+    "startsAt": "2026-02-14T17:00:00",
+    "endsAt": "2026-02-14T18:00:00"
+  },
+  {
+    "id": 22,
+    "title": "Lehar B2B Santiago García",
+    "dayId": 1,
+    "stageId": 3,
+    "artistIds": [24, 25],
+    "startsAt": "2026-02-14T19:00:00",
+    "endsAt": "2026-02-14T20:00:00"
+  },
+  {
+    "id": 23,
+    "title": "Sorä",
+    "dayId": 1,
+    "stageId": 3,
+    "artistIds": [26],
+    "startsAt": "2026-02-14T21:00:00",
+    "endsAt": "2026-02-14T22:00:00"
+  },
+  {
+    "id": 24,
+    "title": "Arkadyan",
+    "dayId": 1,
+    "stageId": 3,
+    "artistIds": [27],
+    "startsAt": "2026-02-14T22:30:00",
+    "endsAt": "2026-02-14T23:30:00"
+  },
+
+  {
+    "id": 25,
+    "title": "Falsed",
+    "dayId": 1,
+    "stageId": 4,
+    "artistIds": [28],
+    "startsAt": "2026-02-14T15:50:00",
+    "endsAt": "2026-02-14T16:50:00"
+  },
+  {
+    "id": 26,
+    "title": "Sorpresa",
+    "dayId": 1,
+    "stageId": 4,
+    "artistIds": [29],
+    "startsAt": "2026-02-14T18:40:00",
+    "endsAt": "2026-02-14T19:40:00"
+  },
+  {
+    "id": 27,
+    "title": "Sorpresa",
+    "dayId": 1,
+    "stageId": 4,
+    "artistIds": [29],
+    "startsAt": "2026-02-14T22:20:00",
+    "endsAt": "2026-02-14T23:20:00"
+  },
+
+  {
+    "id": 28,
+    "title": "Chechi de Marcos",
+    "dayId": 1,
+    "stageId": 5,
+    "artistIds": [30],
+    "startsAt": "2026-02-14T14:15:00",
+    "endsAt": "2026-02-14T14:50:00"
+  },
+  {
+    "id": 29,
+    "title": "Ryan",
+    "dayId": 1,
+    "stageId": 5,
+    "artistIds": [31],
+    "startsAt": "2026-02-14T15:00:00",
+    "endsAt": "2026-02-14T15:40:00"
+  },
+  {
+    "id": 30,
+    "title": "Bersuit Vergarabat",
+    "dayId": 1,
+    "stageId": 5,
+    "artistIds": [32],
+    "startsAt": "2026-02-14T15:50:00",
+    "endsAt": "2026-02-14T16:50:00"
+  },
+  {
+    "id": 31,
+    "title": "Marilina Bertoldi",
+    "dayId": 1,
+    "stageId": 5,
+    "artistIds": [33],
+    "startsAt": "2026-02-14T17:10:00",
+    "endsAt": "2026-02-14T18:10:00"
+  },
+  {
+    "id": 32,
+    "title": "El Kuelgue",
+    "dayId": 1,
+    "stageId": 5,
+    "artistIds": [34],
+    "startsAt": "2026-02-14T18:40:00",
+    "endsAt": "2026-02-14T19:40:00"
+  },
+  {
+    "id": 33,
+    "title": "Cuarteto de Nos",
+    "dayId": 1,
+    "stageId": 5,
+    "artistIds": [35],
+    "startsAt": "2026-02-14T20:40:00",
+    "endsAt": "2026-02-14T21:40:00"
+  },
+  {
+    "id": 34,
+    "title": "Franz Ferdinand",
+    "dayId": 1,
+    "stageId": 5,
+    "artistIds": [36],
+    "startsAt": "2026-02-14T22:40:00",
+    "endsAt": "2026-02-14T23:50:00"
+  },
+  {
+    "id": 35,
+    "title": "The Chemical Brothers (DJ Set)",
+    "dayId": 1,
+    "stageId": 5,
+    "artistIds": [37],
+    "startsAt": "2026-02-15T00:00:00",
+    "endsAt": "2026-02-15T01:00:00"
+  },
+  {
+    "id": 36,
+    "title": "Victoria Whynot",
+    "dayId": 1,
+    "stageId": 5,
+    "artistIds": [38],
+    "startsAt": "2026-02-15T02:00:00",
+    "endsAt": "2026-02-15T03:00:00"
+  },
+
+  {
+    "id": 37,
+    "title": "Microtul",
+    "dayId": 1,
+    "stageId": 6,
+    "artistIds": [39],
+    "startsAt": "2026-02-14T14:10:00",
+    "endsAt": "2026-02-14T14:40:00"
+  },
+  {
+    "id": 38,
+    "title": "1915",
+    "dayId": 1,
+    "stageId": 6,
+    "artistIds": [40],
+    "startsAt": "2026-02-14T14:50:00",
+    "endsAt": "2026-02-14T15:30:00"
+  },
+  {
+    "id": 39,
+    "title": "Un Muerto Mas",
+    "dayId": 1,
+    "stageId": 6,
+    "artistIds": [41],
+    "startsAt": "2026-02-14T15:40:00",
+    "endsAt": "2026-02-14T16:20:00"
+  },
+  {
+    "id": 40,
+    "title": "Girl Ultra",
+    "dayId": 1,
+    "stageId": 6,
+    "artistIds": [42],
+    "startsAt": "2026-02-14T16:30:00",
+    "endsAt": "2026-02-14T17:10:00"
+  },
+  {
+    "id": 41,
+    "title": "Hermanos Gutiérrez",
+    "dayId": 1,
+    "stageId": 6,
+    "artistIds": [43],
+    "startsAt": "2026-02-14T17:20:00",
+    "endsAt": "2026-02-14T18:10:00"
+  },
+  {
+    "id": 42,
+    "title": "Indios",
+    "dayId": 1,
+    "stageId": 6,
+    "artistIds": [44],
+    "startsAt": "2026-02-14T18:20:00",
+    "endsAt": "2026-02-14T19:10:00"
+  },
+  {
+    "id": 43,
+    "title": "Estelares",
+    "dayId": 1,
+    "stageId": 6,
+    "artistIds": [45],
+    "startsAt": "2026-02-14T19:20:00",
+    "endsAt": "2026-02-14T20:20:00"
+  },
+  {
+    "id": 44,
+    "title": "Abel Pintos",
+    "dayId": 1,
+    "stageId": 6,
+    "artistIds": [46],
+    "startsAt": "2026-02-14T20:40:00",
+    "endsAt": "2026-02-14T21:40:00"
+  },
+  {
+    "id": 45,
+    "title": "La Franela",
+    "dayId": 1,
+    "stageId": 6,
+    "artistIds": [47],
+    "startsAt": "2026-02-14T21:50:00",
+    "endsAt": "2026-02-14T22:50:00"
+  },
+  {
+    "id": 46,
+    "title": "Coti",
+    "dayId": 1,
+    "stageId": 6,
+    "artistIds": [48],
+    "startsAt": "2026-02-14T23:10:00",
+    "endsAt": "2026-02-15T00:10:00"
+  },
+  {
+    "id": 47,
+    "title": "Amigo de Artistas",
+    "dayId": 1,
+    "stageId": 6,
+    "artistIds": [49],
+    "startsAt": "2026-02-15T00:30:00",
+    "endsAt": "2026-02-15T01:30:00"
+  },
+
+  {
+    "id": 48,
+    "title": "Kill Flora",
+    "dayId": 1,
+    "stageId": 7,
+    "artistIds": [50],
+    "startsAt": "2026-02-14T14:30:00",
+    "endsAt": "2026-02-14T15:10:00"
+  },
+  {
+    "id": 49,
+    "title": "Eruca Sativa",
+    "dayId": 1,
+    "stageId": 7,
+    "artistIds": [51],
+    "startsAt": "2026-02-14T15:20:00",
+    "endsAt": "2026-02-14T16:20:00"
+  },
+  {
+    "id": 50,
+    "title": "El Zar",
+    "dayId": 1,
+    "stageId": 7,
+    "artistIds": [52],
+    "startsAt": "2026-02-14T16:30:00",
+    "endsAt": "2026-02-14T17:30:00"
+  },
+  {
+    "id": 51,
+    "title": "Turf",
+    "dayId": 1,
+    "stageId": 7,
+    "artistIds": [53],
+    "startsAt": "2026-02-14T17:50:00",
+    "endsAt": "2026-02-14T18:50:00"
+  },
+  {
+    "id": 52,
+    "title": "Dillom",
+    "dayId": 1,
+    "stageId": 7,
+    "artistIds": [54],
+    "startsAt": "2026-02-14T19:30:00",
+    "endsAt": "2026-02-14T20:30:00"
+  },
+  {
+    "id": 53,
+    "title": "Babasónicos",
+    "dayId": 1,
+    "stageId": 7,
+    "artistIds": [55],
+    "startsAt": "2026-02-14T21:20:00",
+    "endsAt": "2026-02-14T22:20:00"
+  },
+  {
+    "id": 54,
+    "title": "Lali",
+    "dayId": 1,
+    "stageId": 7,
+    "artistIds": [56],
+    "startsAt": "2026-02-14T23:20:00",
+    "endsAt": "2026-02-15T00:20:00"
+  },
+  {
+    "id": 55,
+    "title": "Caligaris",
+    "dayId": 1,
+    "stageId": 7,
+    "artistIds": [57],
+    "startsAt": "2026-02-15T00:40:00",
+    "endsAt": "2026-02-15T01:40:00"
+  },
+
+  {
+    "id": 56,
+    "title": "Rosy Gomeez",
+    "dayId": 2,
+    "stageId": 1,
+    "artistIds": [58],
+    "startsAt": "2026-02-15T14:15:00",
+    "endsAt": "2026-02-15T14:55:00"
+  },
+  {
+    "id": 57,
+    "title": "Labios de Sal",
+    "dayId": 2,
+    "stageId": 1,
+    "artistIds": [59],
+    "startsAt": "2026-02-15T15:05:00",
+    "endsAt": "2026-02-15T15:45:00"
+  },
+  {
+    "id": 58,
+    "title": "Rudy",
+    "dayId": 2,
+    "stageId": 1,
+    "artistIds": [60],
+    "startsAt": "2026-02-15T15:55:00",
+    "endsAt": "2026-02-15T16:40:00"
+  },
+  {
+    "id": 59,
+    "title": "Bulldozer Blues Band",
+    "dayId": 2,
+    "stageId": 1,
+    "artistIds": [61],
+    "startsAt": "2026-02-15T16:50:00",
+    "endsAt": "2026-02-15T17:35:00"
+  },
+  {
+    "id": 60,
+    "title": "Cordelia's Blues",
+    "dayId": 2,
+    "stageId": 1,
+    "artistIds": [62],
+    "startsAt": "2026-02-15T17:45:00",
+    "endsAt": "2026-02-15T18:30:00"
+  },
+  {
+    "id": 61,
+    "title": "Grasshopper's",
+    "dayId": 2,
+    "stageId": 1,
+    "artistIds": [63],
+    "startsAt": "2026-02-15T18:40:00",
+    "endsAt": "2026-02-15T19:25:00"
+  },
+  {
+    "id": 62,
+    "title": "Gisa Londero & Toyo Bagoso",
+    "dayId": 2,
+    "stageId": 1,
+    "artistIds": [64, 65],
+    "startsAt": "2026-02-15T19:35:00",
+    "endsAt": "2026-02-15T20:30:00"
+  },
+  {
+    "id": 63,
+    "title": "Crystal Thomas & Luca Giordano",
+    "dayId": 2,
+    "stageId": 1,
+    "artistIds": [66, 67],
+    "startsAt": "2026-02-15T20:40:00",
+    "endsAt": "2026-02-15T21:35:00"
+  },
+  {
+    "id": 64,
+    "title": "Nina Portela",
+    "dayId": 2,
+    "stageId": 1,
+    "artistIds": [68],
+    "startsAt": "2026-02-15T21:45:00",
+    "endsAt": "2026-02-15T22:30:00"
+  },
+  {
+    "id": 65,
+    "title": "Xime Monzón",
+    "dayId": 2,
+    "stageId": 1,
+    "artistIds": [69],
+    "startsAt": "2026-02-15T22:40:00",
+    "endsAt": "2026-02-15T23:25:00"
+  },
+  {
+    "id": 66,
+    "title": "Loretta Sorbello",
+    "dayId": 2,
+    "stageId": 1,
+    "artistIds": [70],
+    "startsAt": "2026-02-15T23:35:00",
+    "endsAt": "2026-02-16T00:35:00"
+  },
+
+  {
+    "id": 67,
+    "title": "Ainda",
+    "dayId": 2,
+    "stageId": 2,
+    "artistIds": [71],
+    "startsAt": "2026-02-15T14:20:00",
+    "endsAt": "2026-02-15T15:00:00"
+  },
+  {
+    "id": 68,
+    "title": "Kapanga",
+    "dayId": 2,
+    "stageId": 2,
+    "artistIds": [72],
+    "startsAt": "2026-02-15T15:10:00",
+    "endsAt": "2026-02-15T16:10:00"
+  },
+  {
+    "id": 69,
+    "title": "Pappo x Juanse",
+    "dayId": 2,
+    "stageId": 2,
+    "artistIds": [73],
+    "startsAt": "2026-02-15T16:25:00",
+    "endsAt": "2026-02-15T17:25:00"
+  },
+  {
+    "id": 70,
+    "title": "El Plan de la Mariposa",
+    "dayId": 2,
+    "stageId": 2,
+    "artistIds": [74],
+    "startsAt": "2026-02-15T17:45:00",
+    "endsAt": "2026-02-15T18:45:00"
+  },
+  {
+    "id": 71,
+    "title": "Divididos",
+    "dayId": 2,
+    "stageId": 2,
+    "artistIds": [75],
+    "startsAt": "2026-02-15T19:40:00",
+    "endsAt": "2026-02-15T20:40:00"
+  },
+  {
+    "id": 72,
+    "title": "Trueno",
+    "dayId": 2,
+    "stageId": 2,
+    "artistIds": [76],
+    "startsAt": "2026-02-15T21:30:00",
+    "endsAt": "2026-02-15T22:30:00"
+  },
+  {
+    "id": 73,
+    "title": "Guasones",
+    "dayId": 2,
+    "stageId": 2,
+    "artistIds": [77],
+    "startsAt": "2026-02-15T23:10:00",
+    "endsAt": "2026-02-16T00:10:00"
+  },
+  {
+    "id": 74,
+    "title": "Louta",
+    "dayId": 2,
+    "stageId": 2,
+    "artistIds": [78],
+    "startsAt": "2026-02-16T00:50:00",
+    "endsAt": "2026-02-16T01:50:00"
+  },
+
+  {
+    "id": 75,
+    "title": "Lourdes Lourdes",
+    "dayId": 2,
+    "stageId": 3,
+    "artistIds": [89],
+    "startsAt": "2026-02-15T16:00:00",
+    "endsAt": "2026-02-15T16:50:00"
+  },
+  {
+    "id": 76,
+    "title": "Glauco di Mambro",
+    "dayId": 2,
+    "stageId": 3,
+    "artistIds": [90],
+    "startsAt": "2026-02-15T17:00:00",
+    "endsAt": "2026-02-15T17:50:00"
+  },
+  {
+    "id": 77,
+    "title": "Brigado Crew",
+    "dayId": 2,
+    "stageId": 3,
+    "artistIds": [91],
+    "startsAt": "2026-02-15T18:00:00",
+    "endsAt": "2026-02-15T19:00:00"
+  },
+  {
+    "id": 78,
+    "title": "Deer Jade",
+    "dayId": 2,
+    "stageId": 3,
+    "artistIds": [92],
+    "startsAt": "2026-02-15T19:30:00",
+    "endsAt": "2026-02-15T20:30:00"
+  },
+  {
+    "id": 79,
+    "title": "Franky Wah",
+    "dayId": 2,
+    "stageId": 3,
+    "artistIds": [88],
+    "startsAt": "2026-02-15T21:00:00",
+    "endsAt": "2026-02-15T22:00:00"
+  },
+  {
+    "id": 80,
+    "title": "Kölsch",
+    "dayId": 2,
+    "stageId": 3,
+    "artistIds": [93],
+    "startsAt": "2026-02-15T22:30:00",
+    "endsAt": "2026-02-15T23:30:00"
+  },
+  {
+    "id": 81,
+    "title": "Matias Tanzmann",
+    "dayId": 2,
+    "stageId": 3,
+    "artistIds": [94],
+    "startsAt": "2026-02-16T00:00:00",
+    "endsAt": "2026-02-16T01:00:00"
+  },
+
+  {
+    "id": 82,
+    "title": "Golden Floyd",
+    "dayId": 2,
+    "stageId": 4,
+    "artistIds": [114],
+    "startsAt": "2026-02-15T15:50:00",
+    "endsAt": "2026-02-15T16:50:00"
+  },
+  {
+    "id": 83,
+    "title": "Sorpresa",
+    "dayId": 2,
+    "stageId": 4,
+    "artistIds": [29],
+    "startsAt": "2026-02-15T17:10:00",
+    "endsAt": "2026-02-15T18:10:00"
+  },
+  {
+    "id": 84,
+    "title": "Agarrate Catalina",
+    "dayId": 2,
+    "stageId": 4,
+    "artistIds": [115],
+    "startsAt": "2026-02-15T22:20:00",
+    "endsAt": "2026-02-15T23:20:00"
+  },
+
+  {
+    "id": 85,
+    "title": "Renzo Leali",
+    "dayId": 2,
+    "stageId": 5,
+    "artistIds": [79],
+    "startsAt": "2026-02-15T14:30:00",
+    "endsAt": "2026-02-15T14:50:00"
+  },
+  {
+    "id": 86,
+    "title": "Beats Modernos",
+    "dayId": 2,
+    "stageId": 5,
+    "artistIds": [80],
+    "startsAt": "2026-02-15T15:00:00",
+    "endsAt": "2026-02-15T15:40:00"
+  },
+  {
+    "id": 87,
+    "title": "Gustavo Cordera",
+    "dayId": 2,
+    "stageId": 5,
+    "artistIds": [81],
+    "startsAt": "2026-02-15T15:50:00",
+    "endsAt": "2026-02-15T16:50:00"
+  },
+  {
+    "id": 88,
+    "title": "Los Pericos",
+    "dayId": 2,
+    "stageId": 5,
+    "artistIds": [82],
+    "startsAt": "2026-02-15T17:00:00",
+    "endsAt": "2026-02-15T18:00:00"
+  },
+  {
+    "id": 89,
+    "title": "Silvestre y La Naranja",
+    "dayId": 2,
+    "stageId": 5,
+    "artistIds": [83],
+    "startsAt": "2026-02-15T18:30:00",
+    "endsAt": "2026-02-15T19:30:00"
+  },
+  {
+    "id": 90,
+    "title": "Morat",
+    "dayId": 2,
+    "stageId": 5,
+    "artistIds": [84],
+    "startsAt": "2026-02-15T20:20:00",
+    "endsAt": "2026-02-15T21:20:00"
+  },
+  {
+    "id": 91,
+    "title": "Las Pastillas del Abuelo",
+    "dayId": 2,
+    "stageId": 5,
+    "artistIds": [85],
+    "startsAt": "2026-02-15T22:20:00",
+    "endsAt": "2026-02-15T23:20:00"
+  },
+  {
+    "id": 92,
+    "title": "Peces Raros",
+    "dayId": 2,
+    "stageId": 5,
+    "artistIds": [86],
+    "startsAt": "2026-02-16T00:00:00",
+    "endsAt": "2026-02-16T00:50:00"
+  },
+  {
+    "id": 93,
+    "title": "Mariano Mellino",
+    "dayId": 2,
+    "stageId": 5,
+    "artistIds": [87],
+    "startsAt": "2026-02-16T01:00:00",
+    "endsAt": "2026-02-16T01:50:00"
+  },
+  {
+    "id": 94,
+    "title": "Franky Wah",
+    "dayId": 2,
+    "stageId": 5,
+    "artistIds": [88],
+    "startsAt": "2026-02-16T02:00:00",
+    "endsAt": "2026-02-16T03:00:00"
+  },
+
+  {
+    "id": 95,
+    "title": "Sofi Mora",
+    "dayId": 2,
+    "stageId": 7,
+    "artistIds": [95],
+    "startsAt": "2026-02-15T14:30:00",
+    "endsAt": "2026-02-15T15:10:00"
+  },
+  {
+    "id": 96,
+    "title": "Blair",
+    "dayId": 2,
+    "stageId": 7,
+    "artistIds": [96],
+    "startsAt": "2026-02-15T15:20:00",
+    "endsAt": "2026-02-15T16:20:00"
+  },
+  {
+    "id": 97,
+    "title": "Gauchito Club",
+    "dayId": 2,
+    "stageId": 7,
+    "artistIds": [97],
+    "startsAt": "2026-02-15T16:30:00",
+    "endsAt": "2026-02-15T17:30:00"
+  },
+  {
+    "id": 98,
+    "title": "Bandalos Chinos",
+    "dayId": 2,
+    "stageId": 7,
+    "artistIds": [98],
+    "startsAt": "2026-02-15T17:50:00",
+    "endsAt": "2026-02-15T18:50:00"
+  },
+  {
+    "id": 99,
+    "title": "Fito Paez",
+    "dayId": 2,
+    "stageId": 7,
+    "artistIds": [99],
+    "startsAt": "2026-02-15T19:10:00",
+    "endsAt": "2026-02-15T20:10:00"
+  },
+  {
+    "id": 100,
+    "title": "Airbag",
+    "dayId": 2,
+    "stageId": 7,
+    "artistIds": [100],
+    "startsAt": "2026-02-15T20:55:00",
+    "endsAt": "2026-02-15T21:55:00"
+  },
+  {
+    "id": 101,
+    "title": "YSY A",
+    "dayId": 2,
+    "stageId": 7,
+    "artistIds": [101],
+    "startsAt": "2026-02-15T23:00:00",
+    "endsAt": "2026-02-16T00:00:00"
+  },
+  {
+    "id": 102,
+    "title": "Caras Extrañas",
+    "dayId": 2,
+    "stageId": 7,
+    "artistIds": [102],
+    "startsAt": "2026-02-16T00:20:00",
+    "endsAt": "2026-02-16T01:20:00"
+  },
+
+  {
+    "id": 103,
+    "title": "Wanda Jael",
+    "dayId": 2,
+    "stageId": 8,
+    "artistIds": [103],
+    "startsAt": "2026-02-15T14:20:00",
+    "endsAt": "2026-02-15T15:00:00"
+  },
+  {
+    "id": 104,
+    "title": "T&K",
+    "dayId": 2,
+    "stageId": 8,
+    "artistIds": [104],
+    "startsAt": "2026-02-15T15:10:00",
+    "endsAt": "2026-02-15T16:00:00"
+  },
+  {
+    "id": 105,
+    "title": "Malandro",
+    "dayId": 2,
+    "stageId": 8,
+    "artistIds": [105],
+    "startsAt": "2026-02-15T16:10:00",
+    "endsAt": "2026-02-15T17:10:00"
+  },
+  {
+    "id": 106,
+    "title": "Gauchos of the Pampa",
+    "dayId": 2,
+    "stageId": 8,
+    "artistIds": [106],
+    "startsAt": "2026-02-15T17:20:00",
+    "endsAt": "2026-02-15T18:10:00"
+  },
+  {
+    "id": 107,
+    "title": "Devendra Banhart",
+    "dayId": 2,
+    "stageId": 8,
+    "artistIds": [107],
+    "startsAt": "2026-02-15T18:20:00",
+    "endsAt": "2026-02-15T19:20:00"
+  },
+  {
+    "id": 108,
+    "title": "Dum Chica",
+    "dayId": 2,
+    "stageId": 8,
+    "artistIds": [108],
+    "startsAt": "2026-02-15T19:30:00",
+    "endsAt": "2026-02-15T20:20:00"
+  },
+  {
+    "id": 109,
+    "title": "Marky Ramone",
+    "dayId": 2,
+    "stageId": 8,
+    "artistIds": [109],
+    "startsAt": "2026-02-15T20:30:00",
+    "endsAt": "2026-02-15T21:25:00"
+  },
+  {
+    "id": 110,
+    "title": "David Ellefson",
+    "dayId": 2,
+    "stageId": 8,
+    "artistIds": [110],
+    "startsAt": "2026-02-15T21:35:00",
+    "endsAt": "2026-02-15T22:25:00"
+  },
+  {
+    "id": 111,
+    "title": "CTM",
+    "dayId": 2,
+    "stageId": 8,
+    "artistIds": [111],
+    "startsAt": "2026-02-15T22:35:00",
+    "endsAt": "2026-02-15T23:25:00"
+  },
+  {
+    "id": 112,
+    "title": "Six Sex",
+    "dayId": 2,
+    "stageId": 8,
+    "artistIds": [112],
+    "startsAt": "2026-02-15T23:35:00",
+    "endsAt": "2026-02-16T00:35:00"
+  },
+  {
+    "id": 113,
+    "title": "El Club de la Serpiente",
+    "dayId": 2,
+    "stageId": 8,
+    "artistIds": [113],
+    "startsAt": "2026-02-16T00:45:00",
+    "endsAt": "2026-02-16T01:45:00"
+  }
+]

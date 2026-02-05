@@ -21,28 +21,47 @@ async function $fetch(url: string) {
   }
 }
 
+// Fetch from bundled data (always available offline)
+async function fetchBundledData(filename: string) {
+  try {
+    const response = await fetch(`/data/${filename}`)
+    if (!response.ok) return null
+    return await response.json()
+  } catch {
+    return null
+  }
+}
+
 async function fetchMeta() {
   return await $fetch(`${env.NEXT_PUBLIC_API_URL}/meta.json`)
 }
 
 async function fetchDays() {
-  return await $fetch(`${env.NEXT_PUBLIC_API_URL}/days.json`)
+  const data = await $fetch(`${env.NEXT_PUBLIC_API_URL}/days.json`)
+  return data ?? (await fetchBundledData('days.json'))
 }
 
 async function fetchStages() {
-  return await $fetch(`${env.NEXT_PUBLIC_API_URL}/stages.json`)
+  const data = await $fetch(`${env.NEXT_PUBLIC_API_URL}/stages.json`)
+  return data ?? (await fetchBundledData('stages.json'))
 }
 
 async function fetchArtists() {
-  return await $fetch(`${env.NEXT_PUBLIC_API_URL}/artists.json`)
+  const data = await $fetch(`${env.NEXT_PUBLIC_API_URL}/artists.json`)
+  return data ?? (await fetchBundledData('artists.json'))
 }
 
 async function fetchShows() {
-  return await $fetch(`${env.NEXT_PUBLIC_API_URL}/shows.json`)
+  const data = await $fetch(`${env.NEXT_PUBLIC_API_URL}/shows.json`)
+  return data ?? (await fetchBundledData('shows.json'))
 }
 
 // Sync functions
 export async function checkNeedsSync() {
+  // Always sync if database is empty (first run or failed previous sync)
+  const dayCount = await db.days.count()
+  if (dayCount === 0) return true
+
   if (!navigator.onLine) return false
 
   const remoteMeta = await fetchMeta()
@@ -57,18 +76,22 @@ export async function checkNeedsSync() {
 }
 
 export async function sync() {
-  if (!navigator.onLine) return
-
   const existingShows = await db.shows.toArray()
 
   const showFavorites = new Map(existingShows.map((s) => [s.id, s.isFavorite]))
 
+  // Fetch from API (with bundled data fallback)
   const [days, stages, artists, shows] = await Promise.all([
     fetchDays(),
     fetchStages(),
     fetchArtists(),
     fetchShows(),
   ])
+
+  // If all fetches failed, abort sync
+  if (!days || !stages || !artists || !shows) {
+    throw new Error('Failed to fetch data from API and bundled sources')
+  }
 
   const mergedShows = shows.map((show: Show) => ({
     ...show,

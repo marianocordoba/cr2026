@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "mkdir -p public/data && cp src/data/*.json public/data/",
     "build": "next build --webpack",
     "start": "next start",
     "check": "ultracite check",

@@ -1,0 +1,692 @@
+[
+  {
+    "id": 1,
+    "name": "Golo's Band",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 2,
+    "name": "Los Mentidores",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 3,
+    "name": "Las Witches",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 4,
+    "name": "Le Dracs",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 5,
+    "name": "Perro Suizo",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 6,
+    "name": "Misty Soul Choir",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 7,
+    "name": "Tango & Roll",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 8,
+    "name": "Wayra Iglesias",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 9,
+    "name": "Los Espíritus",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 10,
+    "name": "Piti Fernandez",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 11,
+    "name": "Les Diabolettes",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 12,
+    "name": "Fantasmagoría",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 13,
+    "name": "La Mississippi",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 14,
+    "name": "Emi",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 15,
+    "name": "Cruzando el Charco",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 16,
+    "name": "Ciro y Los Persas",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 17,
+    "name": "La Vela Puerca",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 18,
+    "name": "Las Pelotas",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 19,
+    "name": "Viejas Locas",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 20,
+    "name": "Jóvenes Pordioseros",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 21,
+    "name": "Claudio Ricci",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 22,
+    "name": "Valentin Huedo",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 23,
+    "name": "Bruz",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 24,
+    "name": "Lehar",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 25,
+    "name": "Santiago García",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 26,
+    "name": "Sorä",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 27,
+    "name": "Arkadyan",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 28,
+    "name": "Falsed",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 29,
+    "name": "Sorpresa",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 30,
+    "name": "Chechi de Marcos",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 31,
+    "name": "Ryan",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 32,
+    "name": "Bersuit Vergarabat",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 33,
+    "name": "Marilina Bertoldi",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 34,
+    "name": "El Kuelgue",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 35,
+    "name": "Cuarteto de Nos",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 36,
+    "name": "Franz Ferdinand",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 37,
+    "name": "The Chemical Brothers",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 38,
+    "name": "Victoria Whynot",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 39,
+    "name": "Microtul",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 40,
+    "name": "1915",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 41,
+    "name": "Un Muerto Mas",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 42,
+    "name": "Girl Ultra",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 43,
+    "name": "Hermanos Gutiérrez",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 44,
+    "name": "Indios",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 45,
+    "name": "Estelares",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 46,
+    "name": "Abel Pintos",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 47,
+    "name": "La Franela",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 48,
+    "name": "Coti",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 49,
+    "name": "Amigo de Artistas",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 50,
+    "name": "Kill Flora",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 51,
+    "name": "Eruca Sativa",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 52,
+    "name": "El Zar",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 53,
+    "name": "Turf",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 54,
+    "name": "Dillom",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 55,
+    "name": "Babasónicos",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 56,
+    "name": "Lali",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 57,
+    "name": "Caligaris",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 58,
+    "name": "Rosy Gomeez",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 59,
+    "name": "Labios de Sal",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 60,
+    "name": "Rudy",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 61,
+    "name": "Bulldozer Blues Band",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 62,
+    "name": "Cordelia's Blues",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 63,
+    "name": "Grasshopper's",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 64,
+    "name": "Gisa Londero",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 65,
+    "name": "Toyo Bagoso",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 66,
+    "name": "Crystal Thomas",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 67,
+    "name": "Luca Giordano",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 68,
+    "name": "Nina Portela",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 69,
+    "name": "Xime Monzón",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 70,
+    "name": "Loretta Sorbello",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 71,
+    "name": "Ainda",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 72,
+    "name": "Kapanga",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 73,
+    "name": "Juanse",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 74,
+    "name": "El Plan de la Mariposa",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 75,
+    "name": "Divididos",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 76,
+    "name": "Trueno",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 77,
+    "name": "Guasones",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 78,
+    "name": "Louta",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 79,
+    "name": "Renzo Leali",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 80,
+    "name": "Beats Modernos",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 81,
+    "name": "Gustavo Cordera",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 82,
+    "name": "Los Pericos",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 83,
+    "name": "Silvestre y La Naranja",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 84,
+    "name": "Morat",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 85,
+    "name": "Las Pastillas del Abuelo",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 86,
+    "name": "Peces Raros",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 87,
+    "name": "Mariano Mellino",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 88,
+    "name": "Franky Wah",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 89,
+    "name": "Lourdes Lourdes",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 90,
+    "name": "Glauco di Mambro",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 91,
+    "name": "Brigado Crew",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 92,
+    "name": "Deer Jade",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 93,
+    "name": "Kölsch",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 94,
+    "name": "Matias Tanzmann",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 95,
+    "name": "Sofi Mora",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 96,
+    "name": "Blair",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 97,
+    "name": "Gauchito Club",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 98,
+    "name": "Bandalos Chinos",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 99,
+    "name": "Fito Paez",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 100,
+    "name": "Airbag",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 101,
+    "name": "YSY A",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 102,
+    "name": "Caras Extrañas",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 103,
+    "name": "Wanda Jael",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 104,
+    "name": "T&K",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 105,
+    "name": "Malandro",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 106,
+    "name": "Gauchos of the Pampa",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 107,
+    "name": "Devendra Banhart",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 108,
+    "name": "Dum Chica",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 109,
+    "name": "Marky Ramone",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 110,
+    "name": "David Ellefson",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 111,
+    "name": "CTM",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 112,
+    "name": "Six Sex",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 113,
+    "name": "El Club de la Serpiente",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 114,
+    "name": "Golden Floyd",
+    "image": null,
+    "spotify": null
+  },
+  {
+    "id": 115,
+    "name": "Agarrate Catalina",
+    "image": null,
+    "spotify": null
+  }
+]
