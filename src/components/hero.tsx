@@ -41,7 +41,7 @@ export function Hero() {
       >
         <Image
           src="/images/cr-logo.png"
-          alt="Logo Cosquín Rock 2026"
+          alt="Cosquín Rock 2026"
           width={200}
           height={200}
           priority

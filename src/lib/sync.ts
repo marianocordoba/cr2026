@@ -4,11 +4,13 @@ import { env } from '@/env'
 
 import { db, Show } from './db'
 
+const TIMEOUT = 10000
+
 // Fetch functions
 async function $fetch(url: string) {
   try {
     const response = await fetch(url, {
-      signal: AbortSignal.timeout(3000),
+      signal: AbortSignal.timeout(TIMEOUT),
     })
 
     if (!response.ok) return null
@@ -73,7 +75,11 @@ export async function sync() {
     isFavorite: showFavorites.get(show.id) ?? show.isFavorite,
   }))
 
-  await db.transaction(
+  const timeoutPromise = new Promise<never>((_, reject) => {
+    setTimeout(() => reject(new Error('Sync transaction timeout')), TIMEOUT)
+  })
+
+  const transactionPromise = db.transaction(
     'rw',
     db.days,
     db.stages,
@@ -88,6 +94,8 @@ export async function sync() {
       ])
     }
   )
+
+  await Promise.race([transactionPromise, timeoutPromise])
 
   await db.meta.put({ key: 'lastSync', value: new Date().toISOString() })
 }
