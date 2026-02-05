@@ -44,7 +44,7 @@ function DigitTile({
     <motion.div
       initial={{ opacity: 0, y: 16, scale: 0.9 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.5, delay: 0.55 + index * 0.08, ease: EASE }}
+      transition={{ duration: 0.3, delay: 0.05 + index * 0.08, ease: EASE }}
       className="flex flex-col items-center gap-1.5"
     >
       <div className="countdown-tile relative flex size-17 items-center justify-center overflow-hidden rounded-xl">
@@ -66,7 +66,7 @@ function Separator({ index }: Readonly<{ index: number }>) {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.4, delay: 0.7 + index * 0.08, ease: EASE }}
+      transition={{ duration: 0.3, delay: 0.1 + index * 0.08, ease: EASE }}
       className="countdown-separator flex flex-col items-center gap-1.5 pt-1"
     >
       <div className="flex h-17 flex-col items-center justify-center gap-1.5">
@@ -104,7 +104,7 @@ export function Countdown() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.5, delay: 0.45, ease: EASE }}
+      transition={{ duration: 0.3, ease: EASE }}
       className="relative z-10 mt-5 flex flex-col items-center gap-2"
     >
       <span className="text-[0.625rem] font-semibold tracking-[0.35em] text-zinc-500 uppercase">
