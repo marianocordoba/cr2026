@@ -16,7 +16,7 @@ import {
 } from 'lucide-react'
 import { motion } from 'motion/react'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import { ShowDrawer } from '@/components/show-drawer'
 import { Button } from '@/components/ui/button'
@@ -46,17 +46,17 @@ type FavoriteResult =
 
 function useUpcomingFavorites(): FavoriteResult {
   const result = useLiveQuery(async () => {
-    const favoriteShows = await db.shows
-      .where('isFavorite')
-      .equals(1)
-      .sortBy('startsAt')
+    const favoriteShows = await db.shows.where('isFavorite').equals(1).toArray()
+    const sortedShows = favoriteShows.toSorted(
+      (a, b) => new Date(a.startsAt).getTime() - new Date(b.startsAt).getTime()
+    )
 
     if (favoriteShows.length === 0) {
       return { status: 'no-favorites' as const }
     }
 
     const now = new Date()
-    const upcomingShows = favoriteShows
+    const upcomingShows = sortedShows
       .filter((show) => {
         const showDate = new Date(show.startsAt)
 
@@ -216,13 +216,7 @@ export function UpcomingFavoritesCard({
   className,
 }: Readonly<{ className?: string }>) {
   const [selectedShowId, setSelectedShowId] = useState<number | null>(null)
-  const [, setTick] = useState(0)
   const result = useUpcomingFavorites()
-
-  useEffect(() => {
-    const interval = setInterval(() => setTick((t) => t + 1), 60_000)
-    return () => clearInterval(interval)
-  }, [])
 
   return (
     <>
