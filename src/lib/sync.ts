@@ -2,7 +2,8 @@ import { isBefore } from 'date-fns'
 
 import { env } from '@/env'
 
-import type { Show } from './db'
+import  { type Show } from './db'
+
 import { db } from './db'
 
 const TIMEOUT = 10_000
