@@ -7,7 +7,6 @@ import {
   formatDistanceToNowStrict,
 } from 'date-fns'
 import { es } from 'date-fns/locale'
-import { HeartIcon } from 'lucide-react'
 import { motion } from 'motion/react'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 
@@ -91,11 +90,35 @@ export const Schedule = ({
     })
   }, [stages, shows])
 
+  let x = 0
+  const handleDragStart = (e: React.MouseEvent<HTMLDivElement>) => {
+    x = e.clientX
+
+    window.addEventListener('mousemove', handleDrag)
+    window.addEventListener('mouseup', handleDragEnd)
+  }
+
+  const handleDrag = (e: MouseEvent) => {
+    if (!scrollRef.current) {
+      return
+    }
+
+    const dx = x - e.clientX
+    x = e.clientX
+    scrollRef.current.scrollLeft += dx
+  }
+
+  const handleDragEnd = () => {
+    window.removeEventListener('mousemove', handleDrag)
+    window.removeEventListener('mouseup', handleDrag)
+  }
+
   return (
     <div
       ref={scrollRef}
-      className="w-dvw overflow-x-auto overflow-y-hidden [&::-webkit-scrollbar]:hidden"
+      className="w-dvw overflow-x-auto overflow-y-hidden select-none [&::-webkit-scrollbar]:hidden"
       style={{ height }}
+      onMouseDown={handleDragStart}
     >
       <div className="relative h-full">
         {/* Slots */}

@@ -26,7 +26,7 @@ export function SearchBar({
     >
       <div
         className={cn(
-          'relative flex items-center gap-3',
+          'relative flex items-center gap-3 lg:max-w-xl mx-auto',
           'h-14 w-full rounded-2xl px-4',
           'bg-white backdrop-blur-md',
           'shadow-lg shadow-black/5',

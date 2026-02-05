@@ -47,7 +47,7 @@ function DigitTile({
       transition={{ duration: 0.5, delay: 0.55 + index * 0.08, ease: EASE }}
       className="flex flex-col items-center gap-1.5"
     >
-      <div className="countdown-tile relative flex size-[4.25rem] items-center justify-center overflow-hidden rounded-xl">
+      <div className="countdown-tile relative flex size-17 items-center justify-center overflow-hidden rounded-xl">
         {/* Inner glow */}
         <div className="pointer-events-none absolute inset-0 bg-radial-[ellipse_70%_60%_at_50%_0%] from-[#DD5227]/10 to-transparent" />
         <span className="relative z-10 font-sans text-2xl font-bold text-[#DD5227] tabular-nums">
@@ -69,7 +69,7 @@ function Separator({ index }: Readonly<{ index: number }>) {
       transition={{ duration: 0.4, delay: 0.7 + index * 0.08, ease: EASE }}
       className="countdown-separator flex flex-col items-center gap-1.5 pt-1"
     >
-      <div className="flex h-[4.25rem] flex-col items-center justify-center gap-1.5">
+      <div className="flex h-17 flex-col items-center justify-center gap-1.5">
         <div className="size-1 rounded-full bg-[#DD5227]/50" />
         <div className="size-1 rounded-full bg-[#DD5227]/50" />
       </div>

@@ -11,6 +11,9 @@ import { BOTTOM_NAV_BAR_HEIGHT, NAV_BAR_HEIGHT } from '@/constants'
 import { db } from '@/lib/db'
 
 export const ScheduleView = () => {
+  const [windowHeight, setWindowHeight] = useState(
+    typeof window === 'undefined' ? 0 : window.innerHeight
+  )
   const [selectedDayId, setSelectedDayId] = useState<number | null>(null)
   const [selectedShowId, setSelectedShowId] = useState<number | null>(null)
 
@@ -18,14 +21,6 @@ export const ScheduleView = () => {
     useLiveQuery(async () => {
       return await db.days.toArray()
     }) || []
-
-  useEffect(() => {
-    if (days.length === 0 || selectedDayId !== null) return
-    const now = new Date()
-    const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`
-    const currentDay = days.find((day) => day.startsAt.startsWith(today))
-    setSelectedDayId(currentDay?.id ?? days[0].id)
-  }, [days, selectedDayId])
 
   const selectedDay = useLiveQuery(async () => {
     if (!selectedDayId) return null
@@ -46,6 +41,23 @@ export const ScheduleView = () => {
       if (!selectedDay) return []
       return await db.shows.where('dayId').equals(selectedDay.id).toArray()
     }, [selectedDay]) || []
+
+  useEffect(() => {
+    if (days.length === 0 || selectedDayId !== null) return
+    const now = new Date()
+    const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`
+    const currentDay = days.find((day) => day.startsAt.startsWith(today))
+    setSelectedDayId(currentDay?.id ?? days[0].id)
+  }, [days, selectedDayId])
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowHeight(window.innerHeight)
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   if (
     !selectedDayId ||
@@ -70,7 +82,7 @@ export const ScheduleView = () => {
 
       <Schedule
         key={selectedDay.id}
-        height={window.innerHeight - NAV_BAR_HEIGHT - BOTTOM_NAV_BAR_HEIGHT}
+        height={windowHeight - NAV_BAR_HEIGHT - BOTTOM_NAV_BAR_HEIGHT}
         offset={NAV_BAR_HEIGHT}
         startsAt={selectedDay.startsAt}
         endsAt={selectedDay.endsAt}
