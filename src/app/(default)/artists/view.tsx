@@ -14,9 +14,13 @@ export function ArtistsView() {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedArtistId, setSelectedArtistId] = useState<number | null>(null)
 
-  const artists = useLiveQuery(async () => {
-    return await db.artists.orderBy('name').toArray()
-  })
+  const artists = useLiveQuery(
+    async () => {
+      return await db.artists.orderBy('name').toArray()
+    },
+    [],
+    []
+  )
 
   if (!artists) {
     return (

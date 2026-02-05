@@ -17,30 +17,39 @@ export const ScheduleView = () => {
   const [selectedDayId, setSelectedDayId] = useState<number | null>(null)
   const [selectedShowId, setSelectedShowId] = useState<number | null>(null)
 
-  const days =
-    useLiveQuery(async () => {
+  const days = useLiveQuery(
+    async () => {
       return await db.days.toArray()
-    }) || []
+    },
+    [],
+    []
+  )
 
   const selectedDay = useLiveQuery(async () => {
     if (!selectedDayId) return null
     return await db.days.get(selectedDayId)
   }, [selectedDayId])
 
-  const stages =
-    useLiveQuery(async () => {
+  const stages = useLiveQuery(
+    async () => {
       if (!selectedDay) return []
       return await db.stages
         .where('dayIds')
         .anyOf(selectedDay.id)
         .sortBy('order')
-    }, [selectedDay]) || []
+    },
+    [selectedDay],
+    []
+  )
 
-  const shows =
-    useLiveQuery(async () => {
+  const shows = useLiveQuery(
+    async () => {
       if (!selectedDay) return []
       return await db.shows.where('dayId').equals(selectedDay.id).toArray()
-    }, [selectedDay]) || []
+    },
+    [selectedDay],
+    []
+  )
 
   useEffect(() => {
     if (days.length === 0 || selectedDayId !== null) return

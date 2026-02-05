@@ -37,7 +37,9 @@ export type Show = {
   isFavorite: number
 }
 
-export const db = new Dexie('cr2026') as Dexie & {
+export const db = new Dexie('cr2026', {
+  cache: 'immutable',
+}) as Dexie & {
   meta: EntityTable<Meta, 'key'>
   days: EntityTable<Day, 'id'>
   artists: EntityTable<Artist, 'id'>
