@@ -2,7 +2,7 @@ import { isBefore } from 'date-fns'
 
 import { env } from '@/env'
 
-import { Artist, db, Show } from './db'
+import { db, Show } from './db'
 
 // Fetch functions
 async function $fetch(url: string) {
