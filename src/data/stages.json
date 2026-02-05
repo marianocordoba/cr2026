@@ -1,0 +1,15 @@
+[
+  { "id": 1, "name": "La Casita del Blues", "dayIds": [1, 2], "order": 6 },
+  { "id": 2, "name": "Sur", "dayIds": [1, 2], "order": 2 },
+  {
+    "id": 3,
+    "name": "La Plaza Electronic Stage",
+    "dayIds": [1, 2],
+    "order": 5
+  },
+  { "id": 4, "name": "Sorpresa", "dayIds": [1, 2], "order": 7 },
+  { "id": 5, "name": "Montaña", "dayIds": [1, 2], "order": 3 },
+  { "id": 6, "name": "Boomerang", "dayIds": [1], "order": 4 },
+  { "id": 7, "name": "Norte", "dayIds": [1, 2], "order": 1 },
+  { "id": 8, "name": "Paraguay", "dayIds": [2], "order": 4 }
+]
