@@ -49,11 +49,7 @@ export const ArtistCard = ({ artist, onClick, index = 0 }: ArtistCardProps) => {
     >
       {/* Avatar */}
       <div className="size-12 shrink-0 overflow-hidden rounded-xl shadow-md shadow-zinc-200">
-        {artist.image === null ? (
-          <div className="flex size-full items-center justify-center bg-linear-to-br from-zinc-600 to-zinc-800">
-            <span className="text-sm font-bold text-white">{initials}</span>
-          </div>
-        ) : (
+        {artist.image ? (
           <Image
             src={`/images/artists/${artist.image}`}
             alt={artist.name}
@@ -61,6 +57,10 @@ export const ArtistCard = ({ artist, onClick, index = 0 }: ArtistCardProps) => {
             width={48}
             height={48}
           />
+        ) : (
+          <div className="flex size-full items-center justify-center bg-linear-to-br from-zinc-600 to-zinc-800">
+            <span className="text-sm font-bold text-white">{initials}</span>
+          </div>
         )}
       </div>
 

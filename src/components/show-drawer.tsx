@@ -82,7 +82,15 @@ export const ShowDrawer = ({
               >
                 <div className="relative">
                   <div className="relative size-28 overflow-hidden rounded-2xl shadow-2xl">
-                    {artist.image === null ? (
+                    {artist.image ? (
+                      <Image
+                        src={`/images/artists/${artist.image}`}
+                        alt={artist.name}
+                        className="size-full object-cover"
+                        width={112}
+                        height={112}
+                      />
+                    ) : (
                       <div className="flex size-full items-center justify-center bg-linear-to-b from-zinc-600 to-zinc-800">
                         <span className="text-3xl font-bold text-white">
                           {artist.name
@@ -91,14 +99,6 @@ export const ShowDrawer = ({
                             .join('')}
                         </span>
                       </div>
-                    ) : (
-                      <Image
-                        src={`/images/artists/${artist.image}`}
-                        alt={artist.name}
-                        className="size-full object-cover"
-                        width={112}
-                        height={112}
-                      />
                     )}
                   </div>
                 </div>

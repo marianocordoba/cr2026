@@ -1,4 +1,5 @@
-import { type Metadata, type Viewport } from 'next'
+import type { Metadata, Viewport } from 'next'
+
 import { Outfit } from 'next/font/google'
 
 import { Toaster } from '@/components/ui/sonner'

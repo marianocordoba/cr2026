@@ -4,7 +4,7 @@ import { addMinutes, differenceInMinutes, format } from 'date-fns'
 import { motion } from 'motion/react'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
-import  { type Show, type Stage } from '@/lib/idb'
+import type { Show, Stage } from '@/lib/idb'
 
 import { ScheduleShowCard } from '@/components/schedule-show-card'
 import { cn } from '@/lib/utils'
@@ -154,7 +154,7 @@ export const Schedule = ({
               </div>
 
               <div
-                className="absolute top-8 z-10 h-full w-px bg-zinc-200"
+                className="absolute top-8 bottom-0 z-10 w-px bg-zinc-200"
                 style={{ left: left + slotWidth / 2 }}
               />
             </React.Fragment>

@@ -3,12 +3,13 @@
 import dynamic from 'next/dynamic'
 import { useEffect, useMemo, useState, useTransition } from 'react'
 
+import type { Artist } from '@/lib/idb'
+
 import { ArtistList } from '@/components/artist-list'
 import { SearchBar } from '@/components/search-bar'
 import { Spinner } from '@/components/ui/spinner'
 import { BOTTOM_NAV_BAR_HEIGHT } from '@/constants'
 import { useArtists } from '@/hooks/use-data'
-import { type Artist } from '@/lib/idb'
 
 // Lazy load drawer - only loads when user clicks an artist
 const ArtistDrawer = dynamic(
