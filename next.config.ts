@@ -1,5 +1,6 @@
-import withSerwistInit from '@serwist/next'
 import type { NextConfig } from 'next'
+
+import withSerwistInit from '@serwist/next'
 import { readdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { $ } from 'zx'

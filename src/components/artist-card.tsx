@@ -2,9 +2,11 @@
 
 import { ChevronRightIcon } from 'lucide-react'
 import { motion } from 'motion/react'
+import Image from 'next/image'
 import { useCallback } from 'react'
 
 import type { Artist } from '@/lib/idb'
+
 import { cn } from '@/lib/utils'
 
 type ArtistCardProps = Readonly<{
@@ -47,16 +49,18 @@ export const ArtistCard = ({ artist, onClick, index = 0 }: ArtistCardProps) => {
     >
       {/* Avatar */}
       <div className="size-12 shrink-0 overflow-hidden rounded-xl shadow-md shadow-zinc-200">
-        {artist.image ? (
-          <img
-            src={`/images/artists/${artist.image}`}
-            alt={artist.name}
-            className="size-full object-cover"
-          />
-        ) : (
+        {artist.image === null ? (
           <div className="flex size-full items-center justify-center bg-linear-to-br from-zinc-600 to-zinc-800">
             <span className="text-sm font-bold text-white">{initials}</span>
           </div>
+        ) : (
+          <Image
+            src={`/images/artists/${artist.image}`}
+            alt={artist.name}
+            className="size-full object-cover"
+            width={48}
+            height={48}
+          />
         )}
       </div>
 

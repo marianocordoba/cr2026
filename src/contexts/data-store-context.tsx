@@ -10,13 +10,8 @@ import {
   type ReactNode,
 } from 'react'
 
-import type {
-  Artist,
-  Day,
-  Meta,
-  Show,
-  Stage,
-} from '@/lib/idb'
+import type { Artist, Day, Meta, Show, Stage } from '@/lib/idb'
+
 import { getDB } from '@/lib/idb'
 
 interface DataStoreState {

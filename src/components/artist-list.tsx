@@ -4,7 +4,7 @@ import { MusicIcon } from 'lucide-react'
 import { motion } from 'motion/react'
 import { memo } from 'react'
 
-import  { type Artist } from '@/lib/idb'
+import type { Artist } from '@/lib/idb'
 
 import { ArtistCard } from '@/components/artist-card'
 

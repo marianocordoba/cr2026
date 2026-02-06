@@ -12,6 +12,7 @@
       {
         "allowArrowFunctions": true
       }
-    ]
+    ],
+    "import/consistent-type-specifier-style": "off"
   }
 }
