@@ -1,9 +1,8 @@
-import { useLiveQuery } from 'dexie-react-hooks'
 import { ArrowRightIcon } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { NAV_BAR_HEIGHT } from '@/constants'
-import { db } from '@/lib/db'
+import { useDays } from '@/hooks/use-data'
 
 export const DaySelector = ({
   selectedDayId,
@@ -12,7 +11,7 @@ export const DaySelector = ({
   selectedDayId: number
   onDayChange: (dayId: number) => void
 }) => {
-  const days = useLiveQuery(async () => await db.days.toArray(), []) || []
+  const { days } = useDays()
 
   const selectedDay = days.find((day) => day.id === selectedDayId)
   const otherDay = days.find((day) => day.id !== selectedDayId)

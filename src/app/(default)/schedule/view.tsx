@@ -1,16 +1,19 @@
 'use client'
 
-import { useLiveQuery } from 'dexie-react-hooks'
 import dynamic from 'next/dynamic'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { DaySelector } from '@/components/day-selector'
 import { Schedule } from '@/components/schedule'
 import { Spinner } from '@/components/ui/spinner'
 import { BOTTOM_NAV_BAR_HEIGHT, NAV_BAR_HEIGHT } from '@/constants'
-import { db } from '@/lib/db'
+import {
+  useDay,
+  useDays,
+  useShowsForDay,
+  useStagesForDay,
+} from '@/hooks/use-data'
 
-// Lazy load drawer - only loads when user clicks a show
 const ShowDrawer = dynamic(
   () =>
     import('@/components/show-drawer').then((mod) => ({
@@ -26,48 +29,10 @@ export const ScheduleView = () => {
   const [selectedDayId, setSelectedDayId] = useState<number | null>(null)
   const [selectedShowId, setSelectedShowId] = useState<number | null>(null)
 
-  const days = useLiveQuery(async () => await db.days.toArray(), [], [])
-
-  const selectedDay = useLiveQuery(async () => {
-    if (!selectedDayId) {
-      return null
-    }
-    return await db.days.get(selectedDayId)
-  }, [selectedDayId])
-
-  // Derive primitive ID instead of passing entire object
-  const selectedDayIdForQuery = useMemo(
-    () => selectedDay?.id,
-    [selectedDay?.id]
-  )
-
-  const stages = useLiveQuery(
-    async () => {
-      if (!selectedDayIdForQuery) {
-        return []
-      }
-      return await db.stages
-        .where('dayIds')
-        .anyOf(selectedDayIdForQuery)
-        .sortBy('order')
-    },
-    [selectedDayIdForQuery],
-    []
-  )
-
-  const shows = useLiveQuery(
-    async () => {
-      if (!selectedDayIdForQuery) {
-        return []
-      }
-      return await db.shows
-        .where('dayId')
-        .equals(selectedDayIdForQuery)
-        .toArray()
-    },
-    [selectedDayIdForQuery],
-    []
-  )
+  const { days, isLoading } = useDays()
+  const selectedDay = useDay(selectedDayId)
+  const stages = useStagesForDay(selectedDayId)
+  const shows = useShowsForDay(selectedDayId)
 
   useEffect(() => {
     if (days.length === 0 || selectedDayId !== null) {
@@ -89,6 +54,7 @@ export const ScheduleView = () => {
   }, [])
 
   if (
+    isLoading ||
     !selectedDayId ||
     !selectedDay ||
     days.length === 0 ||

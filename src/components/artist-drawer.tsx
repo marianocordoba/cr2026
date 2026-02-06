@@ -1,7 +1,6 @@
 'use client'
 
 import { format } from 'date-fns'
-import { useLiveQuery } from 'dexie-react-hooks'
 import {
   CalendarIcon,
   HeartCrackIcon,
@@ -11,6 +10,7 @@ import {
 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useMemo } from 'react'
 
 import { SpotifyIcon } from '@/components/icons/spotify'
 import {
@@ -19,7 +19,12 @@ import {
   DrawerContent,
   DrawerTitle,
 } from '@/components/ui/drawer'
-import { db, type Show } from '@/lib/db'
+import { useDataStore } from '@/contexts/data-store-context'
+import {
+  useArtist,
+  useShowsForArtist,
+  useToggleFavorite,
+} from '@/hooks/use-data'
 import { cn } from '@/lib/utils'
 
 type ArtistDrawerProps = Readonly<{
@@ -28,40 +33,24 @@ type ArtistDrawerProps = Readonly<{
 }>
 
 export const ArtistDrawer = ({ artistId, onClose }: ArtistDrawerProps) => {
-  const data = useLiveQuery(async () => {
-    if (!artistId) {
-      return null
-    }
+  const artist = useArtist(artistId)
+  const artistShows = useShowsForArtist(artistId)
+  const { days, stages } = useDataStore()
+  const toggleFavorite = useToggleFavorite()
 
-    const artist = await db.artists.get(artistId)
-    if (!artist) {
-      return null
-    }
+  const showsWithDetails = useMemo(
+    () =>
+      artistShows.map((show) => ({
+        day: days.find((d) => d.id === show.dayId),
+        show,
+        stage: stages.find((s) => s.id === show.stageId),
+      })),
+    [artistShows, days, stages]
+  )
 
-    const shows = await db.shows.where('artistIds').equals(artistId).toArray()
-
-    const showsWithDetails = await Promise.all(
-      shows.map(async (show) => {
-        const [day, stage] = await Promise.all([
-          db.days.get(show.dayId),
-          db.stages.get(show.stageId),
-        ])
-        return { day, show, stage }
-      })
-    )
-
-    return { artist, shows: showsWithDetails }
-  }, [artistId])
-
-  const toggleShowFavorite = async (show: Show) => {
-    await db.shows.update(show.id, { isFavorite: show.isFavorite ? 0 : 1 })
-  }
-
-  if (!data?.artist) {
+  if (!artist) {
     return null
   }
-
-  const { artist, shows } = data
 
   const initials = artist.name
     .split(' ')
@@ -72,18 +61,15 @@ export const ArtistDrawer = ({ artistId, onClose }: ArtistDrawerProps) => {
   return (
     <Drawer open={artistId !== null} onOpenChange={onClose}>
       <DrawerContent className="from-card to-background mx-auto max-w-lg overflow-hidden border-0! bg-linear-to-b">
-        {/* Close button */}
         <DrawerClose className="bg-foreground/5 text-muted-foreground hover:bg-foreground/10 hover:text-foreground absolute top-4 right-4 z-10 flex size-8 items-center justify-center rounded-full backdrop-blur-sm transition-colors">
           <XIcon className="size-4" />
         </DrawerClose>
 
-        {/* Artist name */}
         <DrawerTitle className="text-foreground mt-6 text-center text-2xl font-bold tracking-tight">
           {artist.name}
         </DrawerTitle>
 
         <div className="relative p-6 pt-8">
-          {/* Artist image */}
           <div className="flex justify-center">
             <div className="size-32 overflow-hidden rounded-2xl shadow-2xl">
               {artist.image ? (
@@ -104,7 +90,6 @@ export const ArtistDrawer = ({ artistId, onClose }: ArtistDrawerProps) => {
             </div>
           </div>
 
-          {/* Spotify link */}
           {artist.spotify && (
             <div className="mt-4 flex justify-center">
               <Link
@@ -119,14 +104,10 @@ export const ArtistDrawer = ({ artistId, onClose }: ArtistDrawerProps) => {
             </div>
           )}
 
-          {/* Shows section */}
-          {shows.length > 0 && (
+          {showsWithDetails.length > 0 && (
             <div className="mt-8">
-              {/* <h3 className="mb-3 text-sm font-semibold tracking-wider text-zinc-500 uppercase">
-                Presentaciones
-              </h3> */}
               <div className="space-y-3">
-                {shows.map(({ show, day, stage }) => (
+                {showsWithDetails.map(({ show, day, stage }) => (
                   <div
                     key={show.id}
                     className="overflow-hidden rounded-xl bg-zinc-100/80"
@@ -148,7 +129,7 @@ export const ArtistDrawer = ({ artistId, onClose }: ArtistDrawerProps) => {
                     </div>
                     <button
                       type="button"
-                      onClick={() => toggleShowFavorite(show)}
+                      onClick={() => toggleFavorite(show.id)}
                       className={cn(
                         'flex w-full items-center justify-center gap-2 py-2.5 text-sm font-semibold transition-all duration-200',
                         show.isFavorite

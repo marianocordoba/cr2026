@@ -9,7 +9,8 @@ import { es } from 'date-fns/locale'
 import { motion } from 'motion/react'
 import { memo, useCallback } from 'react'
 
-import type { Show } from '@/lib/db'
+import  { type Show } from '@/lib/idb'
+
 import { cn } from '@/lib/utils'
 
 type ScheduleShowCardProps = Readonly<{

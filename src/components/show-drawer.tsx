@@ -1,7 +1,6 @@
 'use client'
 
 import { format } from 'date-fns'
-import { useLiveQuery } from 'dexie-react-hooks'
 import {
   CalendarIcon,
   HeartCrackIcon,
@@ -19,7 +18,13 @@ import {
   DrawerContent,
   DrawerTitle,
 } from '@/components/ui/drawer'
-import { db } from '@/lib/db'
+import {
+  useArtistsByIds,
+  useDay,
+  useShow,
+  useStage,
+  useToggleFavorite,
+} from '@/hooks/use-data'
 import { cn } from '@/lib/utils'
 
 export const ShowDrawer = ({
@@ -29,66 +34,44 @@ export const ShowDrawer = ({
   showId: number | null
   onClose: () => void
 }) => {
-  const data = useLiveQuery(async () => {
-    if (!showId) {
-      return null
-    }
+  const show = useShow(showId)
+  const day = useDay(show?.dayId ?? null)
+  const stage = useStage(show?.stageId ?? null)
+  const artists = useArtistsByIds(show?.artistIds ?? [])
+  const toggleFavoriteAction = useToggleFavorite()
 
-    const show = await db.shows.get(showId)
+  const handleToggleFavorite = async () => {
     if (!show) {
-      return null
-    }
-
-    const [day, stage, artists] = await Promise.all([
-      db.days.get(show.dayId),
-      db.stages.get(show.stageId),
-      db.artists.where('id').anyOf(show.artistIds).toArray(),
-    ])
-
-    return {
-      artists,
-      day,
-      show,
-      stage,
-    }
-  }, [showId])
-
-  const toggleFavorite = async () => {
-    if (!data?.show) {
       return
     }
 
     try {
-      await db.shows.update(data.show.id, {
-        isFavorite: data.show.isFavorite ? 0 : 1,
-      })
-    } catch (error: any) {
-      toast.error(error.toString())
+      await toggleFavoriteAction(show.id)
+    } catch (error: unknown) {
+      toast.error(String(error))
     }
   }
 
-  const isFavorite = data?.show?.isFavorite
+  const isFavorite = show?.isFavorite
 
-  if (!data?.show || !data?.day || !data?.stage || !data?.artists) {
+  if (!show || !day || !stage || artists.length === 0) {
     return null
   }
 
   return (
-    <Drawer open={data !== null} onOpenChange={onClose}>
+    <Drawer open={show !== null} onOpenChange={onClose}>
       <DrawerContent className="from-card to-background mx-auto max-w-lg overflow-hidden border-0! bg-linear-to-b">
-        {/* Close button */}
         <DrawerClose className="bg-foreground/5 text-muted-foreground hover:bg-foreground/10 hover:text-foreground absolute top-4 right-4 z-10 flex size-8 items-center justify-center rounded-full backdrop-blur-sm transition-colors">
           <XIcon className="size-4" />
         </DrawerClose>
 
         <DrawerTitle className="text-foreground mt-8 px-10 text-center text-2xl font-bold tracking-tight">
-          {data.show.title}
+          {show.title}
         </DrawerTitle>
 
         <div className="relative p-6">
-          {/* Artist showcase */}
           <div className="flex justify-center gap-6">
-            {data.artists.map((artist, index) => (
+            {artists.map((artist, index) => (
               <div
                 key={artist.id}
                 className="group flex flex-col items-center"
@@ -96,7 +79,6 @@ export const ShowDrawer = ({
                   animationDelay: `${index * 100}ms`,
                 }}
               >
-                {/* Artist image */}
                 <div className="relative">
                   <div className="relative size-28 overflow-hidden rounded-2xl shadow-2xl">
                     {artist.image ? (
@@ -118,12 +100,10 @@ export const ShowDrawer = ({
                   </div>
                 </div>
 
-                {/* Artist name */}
                 <span className="text-foreground mt-3 text-center font-semibold tracking-tight">
                   {artist.name}
                 </span>
 
-                {/* Spotify link */}
                 {artist.spotify && (
                   <Link
                     href={artist.spotify}
@@ -139,26 +119,24 @@ export const ShowDrawer = ({
             ))}
           </div>
 
-          {/* Show details card with favorite button */}
           <div className="mt-8 overflow-hidden rounded-xl bg-zinc-100/80">
             <div className="flex items-center gap-4 px-4 py-3">
               <div className="flex flex-1 flex-col gap-1">
                 <div className="flex items-center gap-2 text-sm text-zinc-700">
                   <MapPinIcon className="size-3.5" />
-                  <span className="font-medium">{data.stage.name}</span>
+                  <span className="font-medium">{stage.name}</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-zinc-500">
                   <CalendarIcon className="size-3.5" />
                   <span>
-                    {data.day.name} ·{' '}
-                    {format(new Date(data.show.startsAt), 'HH:mm')}
+                    {day.name} · {format(new Date(show.startsAt), 'HH:mm')}
                   </span>
                 </div>
               </div>
             </div>
             <button
               type="button"
-              onClick={toggleFavorite}
+              onClick={handleToggleFavorite}
               className={cn(
                 'flex w-full items-center justify-center gap-2 py-3 font-semibold transition-all duration-200',
                 isFavorite

@@ -3,29 +3,38 @@
 import { AnimatePresence, motion } from 'motion/react'
 import { useEffect, useState } from 'react'
 
-import { checkNeedsSync, sync } from '@/lib/sync'
+import { useDataStore } from '@/contexts/data-store-context'
+import { checkNeedsSync, saveLastSync, syncData } from '@/lib/sync'
 
 import { Spinner } from './ui/spinner'
 
 export const SyncOverlay = () => {
   const [isSyncing, setIsSyncing] = useState(false)
+  const { bulkUpdate } = useDataStore()
 
   useEffect(() => {
-    checkNeedsSync()
-      .then((needsSync) => {
-        if (needsSync) {
-          setIsSyncing(true)
-          return Promise.all([
-            sync(),
-            // Ensure the syncing indicator is visible for at least 1 second
+    const performSync = async () => {
+      const needsSync = await checkNeedsSync()
+
+      if (needsSync) {
+        setIsSyncing(true)
+
+        try {
+          const [data] = await Promise.all([
+            syncData(),
             new Promise((resolve) => setTimeout(resolve, 1000)),
           ])
+
+          await bulkUpdate(data)
+          await saveLastSync()
+        } finally {
+          setIsSyncing(false)
         }
-      })
-      .finally(() => {
-        setIsSyncing(false)
-      })
-  }, [])
+      }
+    }
+
+    performSync()
+  }, [bulkUpdate])
 
   return (
     <AnimatePresence>

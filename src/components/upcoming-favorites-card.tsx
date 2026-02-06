@@ -6,7 +6,6 @@ import {
   formatDistanceToNowStrict,
 } from 'date-fns'
 import { es } from 'date-fns/locale'
-import { useLiveQuery } from 'dexie-react-hooks'
 import {
   ArrowRightIcon,
   CalendarCheckIcon,
@@ -18,7 +17,9 @@ import { motion } from 'motion/react'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useCallback, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
+
+import  { type Artist, type Day, type Show, type Stage } from '@/lib/idb'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -29,10 +30,10 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { Spinner } from '@/components/ui/spinner'
-import { db, type Artist, type Day, type Show, type Stage } from '@/lib/db'
+import { useDataStore } from '@/contexts/data-store-context'
+import { useFavoriteShows } from '@/hooks/use-data'
 import { cn } from '@/lib/utils'
 
-// Lazy load drawer - only loads when user clicks a show
 const ShowDrawer = dynamic(
   async () => {
     const mod = await import('@/components/show-drawer')
@@ -55,51 +56,46 @@ type FavoriteResult =
   | { status: 'has-upcoming'; shows: UpcomingFavoriteShow[] }
 
 const useUpcomingFavorites = (): FavoriteResult => {
-  const result = useLiveQuery(async () => {
-    const favoriteShows = await db.shows.where('isFavorite').equals(1).toArray()
-    const sortedShows = favoriteShows.toSorted(
-      (a, b) => new Date(a.startsAt).getTime() - new Date(b.startsAt).getTime()
-    )
+  const { favoriteShows, isLoading } = useFavoriteShows()
+  const { days, stages, artists } = useDataStore()
+
+  return useMemo(() => {
+    if (isLoading) {
+      return { status: 'loading' }
+    }
 
     if (favoriteShows.length === 0) {
-      return { status: 'no-favorites' as const }
+      return { status: 'no-favorites' }
     }
 
     const now = new Date()
-    const upcomingShows = sortedShows
+    const upcomingShows = favoriteShows
       .filter((show) => {
         const showDate = new Date(show.startsAt)
-
         return differenceInMinutes(showDate, now) > -60
       })
       .slice(0, 10)
 
     if (upcomingShows.length === 0) {
-      return { status: 'all-past' as const }
+      return { status: 'all-past' }
     }
 
-    const enriched = await Promise.all(
-      upcomingShows.map(async (show) => {
-        const [day, stage, artists] = await Promise.all([
-          db.days.get(show.dayId),
-          db.stages.get(show.stageId),
-          db.artists.where('id').anyOf(show.artistIds).toArray(),
-        ])
+    const enriched = upcomingShows
+      .map((show) => {
+        const day = days.find((d) => d.id === show.dayId)
+        const stage = stages.find((s) => s.id === show.stageId)
+        const showArtists = artists.filter((a) => show.artistIds.includes(a.id))
+
         if (!day || !stage) {
-          throw new Error('Missing day or stage data')
+          return null
         }
-        return { artists, day, show, stage }
+
+        return { artists: showArtists, day, show, stage }
       })
-    )
+      .filter((item): item is UpcomingFavoriteShow => item !== null)
 
-    return { shows: enriched, status: 'has-upcoming' as const }
-  }, [])
-
-  if (result === undefined) {
-    return { status: 'loading' }
-  }
-
-  return result
+    return { shows: enriched, status: 'has-upcoming' }
+  }, [favoriteShows, isLoading, days, stages, artists])
 }
 
 const FavoriteShowItem = ({
@@ -121,7 +117,6 @@ const FavoriteShowItem = ({
     locale: es,
   })
 
-  // Preload show drawer on hover/focus
   const handleMouseEnter = useCallback(() => {
     import('@/components/show-drawer')
   }, [])

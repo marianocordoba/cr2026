@@ -4,9 +4,8 @@ import { addMinutes, differenceInMinutes, format } from 'date-fns'
 import { motion } from 'motion/react'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
-import  { type Show, type Stage } from '@/lib/db'
-
 import { ScheduleShowCard } from '@/components/schedule-show-card'
+import type { Show, Stage } from '@/lib/idb'
 import { cn } from '@/lib/utils'
 
 export const Schedule = ({

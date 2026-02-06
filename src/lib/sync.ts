@@ -2,13 +2,10 @@ import { isBefore } from 'date-fns'
 
 import { env } from '@/env'
 
-import  { type Show } from './db'
-
-import { db } from './db'
+import { getDB, type Artist, type Day, type Show, type Stage } from './idb'
 
 const TIMEOUT = 10_000
 
-// Fetch functions
 async function $fetch(url: string) {
   try {
     const response = await fetch(url, {
@@ -25,7 +22,6 @@ async function $fetch(url: string) {
   }
 }
 
-// Fetch from bundled data (always available offline)
 async function fetchBundledData(filename: string) {
   try {
     const response = await fetch(`/data/${filename}`)
@@ -62,10 +58,10 @@ async function fetchShows() {
   return data ?? (await fetchBundledData('shows.json'))
 }
 
-// Sync functions
-export async function checkNeedsSync() {
-  // Always sync if database is empty (first run or failed previous sync)
-  const dayCount = await db.days.count()
+export async function checkNeedsSync(): Promise<boolean> {
+  const db = await getDB()
+
+  const dayCount = await db.count('days')
   if (dayCount === 0) {
     return true
   }
@@ -75,26 +71,32 @@ export async function checkNeedsSync() {
   }
 
   const remoteMeta = await fetchMeta()
-  const lastSync = await db.meta.get('lastSync')
+  const lastSyncRecord = await db.get('meta', 'lastSync')
 
   if (!remoteMeta) {
     return false
   }
-  if (!lastSync) {
+  if (!lastSyncRecord) {
     return true
   }
 
-  if (isBefore(new Date(lastSync.value), new Date(remoteMeta.lastUpdate))) {
-    return true
-  }
+  return isBefore(
+    new Date(lastSyncRecord.value),
+    new Date(remoteMeta.lastUpdate)
+  )
 }
 
-export async function sync() {
-  const existingShows = await db.shows.toArray()
+export async function syncData(): Promise<{
+  days: Day[]
+  artists: Artist[]
+  stages: Stage[]
+  shows: Show[]
+}> {
+  const db = await getDB()
 
+  const existingShows = await db.getAll('shows')
   const showFavorites = new Map(existingShows.map((s) => [s.id, s.isFavorite]))
 
-  // Fetch from API (with bundled data fallback)
   const [days, stages, artists, shows] = await Promise.all([
     fetchDays(),
     fetchStages(),
@@ -102,7 +104,6 @@ export async function sync() {
     fetchShows(),
   ])
 
-  // If all fetches failed, abort sync
   if (!days || !stages || !artists || !shows) {
     throw new Error('Failed to fetch data from API and bundled sources')
   }
@@ -112,27 +113,15 @@ export async function sync() {
     isFavorite: showFavorites.get(show.id) ?? show.isFavorite,
   }))
 
-  const timeoutPromise = new Promise<never>((_, reject) => {
-    setTimeout(() => reject(new Error('Sync transaction timeout')), TIMEOUT)
-  })
+  return {
+    artists,
+    days,
+    shows: mergedShows,
+    stages,
+  }
+}
 
-  const transactionPromise = db.transaction(
-    'rw',
-    db.days,
-    db.stages,
-    db.artists,
-    db.shows,
-    async () => {
-      await Promise.all([
-        db.days.bulkPut(days, { allKeys: true }),
-        db.stages.bulkPut(stages, { allKeys: true }),
-        db.artists.bulkPut(artists, { allKeys: true }),
-        db.shows.bulkPut(mergedShows, { allKeys: true }),
-      ])
-    }
-  )
-
-  await Promise.race([transactionPromise, timeoutPromise])
-
-  await db.meta.put({ key: 'lastSync', value: new Date().toISOString() })
+export async function saveLastSync(): Promise<void> {
+  const db = await getDB()
+  await db.put('meta', { key: 'lastSync', value: new Date().toISOString() })
 }

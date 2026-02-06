@@ -3,8 +3,8 @@
 import dynamic from 'next/dynamic'
 
 import { BottomNavBar } from '@/components/bottom-nav-bar'
+import { DataStoreProvider } from '@/contexts/data-store-context'
 
-// Lazy load non-critical overlays that only activate conditionally
 const SyncOverlay = dynamic(
   () =>
     import('@/components/sync-overlay').then((mod) => ({
@@ -27,11 +27,13 @@ export default function DefaultLayout({
   children: React.ReactNode
 }>) {
   return (
-    <div className="flex min-h-dvh flex-col bg-zinc-50">
-      {children}
-      <BottomNavBar />
-      <SyncOverlay />
-      <DisclaimerDrawer />
-    </div>
+    <DataStoreProvider>
+      <div className="flex min-h-dvh flex-col bg-zinc-50">
+        {children}
+        <BottomNavBar />
+        <SyncOverlay />
+        <DisclaimerDrawer />
+      </div>
+    </DataStoreProvider>
   )
 }

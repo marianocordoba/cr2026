@@ -1,4 +1,4 @@
-import  { type NextConfig } from 'next'
+import type { NextConfig } from 'next'
 
 import withSerwistInit from '@serwist/next'
 import { readdirSync } from 'node:fs'

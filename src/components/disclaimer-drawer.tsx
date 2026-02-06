@@ -1,7 +1,6 @@
 'use client'
 
-import { useLiveQuery } from 'dexie-react-hooks'
-import { InfoIcon, TriangleAlertIcon } from 'lucide-react'
+import { InfoIcon } from 'lucide-react'
 import { motion } from 'motion/react'
 
 import { Button } from '@/components/ui/button'
@@ -13,29 +12,18 @@ import {
   DrawerHeader,
   DrawerTitle,
 } from '@/components/ui/drawer'
-import { db } from '@/lib/db'
+import { useDisclaimer } from '@/hooks/use-data'
 
 const EASE = [0.25, 0.1, 0.25, 1] as const
 
 export const DisclaimerDrawer = () => {
-  const result = useLiveQuery(async () => {
-    const record = await db.meta.get('disclaimerAcknowledged')
-    return record ?? null
-  }, [])
+  const { acknowledged, acknowledge, isLoading } = useDisclaimer()
 
-  // Still loading from IndexedDB — render nothing to avoid flash
-  if (result === undefined) {
+  if (isLoading) {
     return null
   }
 
-  const isOpen = result === null
-
-  const handleAcknowledge = async () => {
-    await db.meta.put({
-      key: 'disclaimerAcknowledged',
-      value: new Date().toISOString(),
-    })
-  }
+  const isOpen = !acknowledged
 
   return (
     <Drawer open={isOpen} dismissible={false}>
@@ -82,7 +70,7 @@ export const DisclaimerDrawer = () => {
         </div>
 
         <DrawerFooter>
-          <Button onClick={handleAcknowledge} className="w-full">
+          <Button onClick={acknowledge} className="w-full">
             Entendido
           </Button>
         </DrawerFooter>
