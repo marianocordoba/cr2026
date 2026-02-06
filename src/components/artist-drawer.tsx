@@ -72,7 +72,13 @@ export const ArtistDrawer = ({ artistId, onClose }: ArtistDrawerProps) => {
         <div className="relative p-6 pt-8">
           <div className="flex justify-center">
             <div className="size-32 overflow-hidden rounded-2xl shadow-2xl">
-              {artist.image ? (
+              {artist.image === null ? (
+                <div className="flex size-full items-center justify-center bg-linear-to-b from-zinc-600 to-zinc-800">
+                  <span className="text-4xl font-bold text-white">
+                    {initials}
+                  </span>
+                </div>
+              ) : (
                 <Image
                   src={`/images/artists/${artist.image}`}
                   alt={artist.name}
@@ -80,12 +86,6 @@ export const ArtistDrawer = ({ artistId, onClose }: ArtistDrawerProps) => {
                   height={128}
                   className="size-full object-cover"
                 />
-              ) : (
-                <div className="flex size-full items-center justify-center bg-linear-to-b from-zinc-600 to-zinc-800">
-                  <span className="text-4xl font-bold text-white">
-                    {initials}
-                  </span>
-                </div>
               )}
             </div>
           </div>

@@ -4,8 +4,7 @@ import { ChevronRightIcon } from 'lucide-react'
 import { motion } from 'motion/react'
 import { useCallback } from 'react'
 
-import  { type Artist } from '@/lib/idb'
-
+import type { Artist } from '@/lib/idb'
 import { cn } from '@/lib/utils'
 
 type ArtistCardProps = Readonly<{

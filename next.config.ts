@@ -1,6 +1,5 @@
-import type { NextConfig } from 'next'
-
 import withSerwistInit from '@serwist/next'
+import type { NextConfig } from 'next'
 import { readdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { $ } from 'zx'
@@ -25,7 +24,7 @@ export default async function config() {
       ...artistImages,
     ],
     cacheOnNavigation: true,
-    disable: process.env.NODE_ENV === 'development',
+    // disable: process.env.NODE_ENV === 'development',
     reloadOnOnline: true,
     swDest: 'public/sw.js',
     swSrc: 'src/app/sw.ts',

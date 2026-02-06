@@ -19,8 +19,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useCallback, useMemo, useState } from 'react'
 
-import  { type Artist, type Day, type Show, type Stage } from '@/lib/idb'
-
 import { Button } from '@/components/ui/button'
 import {
   Card,
@@ -32,6 +30,7 @@ import {
 import { Spinner } from '@/components/ui/spinner'
 import { useDataStore } from '@/contexts/data-store-context'
 import { useFavoriteShows } from '@/hooks/use-data'
+import type { Artist, Day, Show, Stage } from '@/lib/idb'
 import { cn } from '@/lib/utils'
 
 const ShowDrawer = dynamic(

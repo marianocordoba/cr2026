@@ -3,12 +3,13 @@
 import dynamic from 'next/dynamic'
 import { useEffect, useMemo, useState, useTransition } from 'react'
 
+import  { type Artist } from '@/lib/idb'
+
 import { ArtistList } from '@/components/artist-list'
 import { SearchBar } from '@/components/search-bar'
 import { Spinner } from '@/components/ui/spinner'
 import { BOTTOM_NAV_BAR_HEIGHT } from '@/constants'
 import { useArtists } from '@/hooks/use-data'
-import type { Artist } from '@/lib/idb'
 
 // Lazy load drawer - only loads when user clicks an artist
 const ArtistDrawer = dynamic(
@@ -30,6 +31,14 @@ export const ArtistsView = () => {
 
   const { artists, isLoading } = useArtists()
 
+  // Memoize the expensive filter operation - must be called before any early returns
+  const filteredArtists = useMemo(() => {
+    const lowerSearch = searchTerm.toLowerCase()
+    return artists.filter((artist) =>
+      artist.name.toLowerCase().includes(lowerSearch)
+    )
+  }, [artists, searchTerm])
+
   useEffect(() => {
     const handleResize = () => {
       setWindowHeight(window.innerHeight)
@@ -48,14 +57,6 @@ export const ArtistsView = () => {
       </div>
     )
   }
-
-  // Memoize the expensive filter operation
-  const filteredArtists = useMemo(() => {
-    const lowerSearch = searchTerm.toLowerCase()
-    return artists.filter((artist) =>
-      artist.name.toLowerCase().includes(lowerSearch)
-    )
-  }, [artists, searchTerm])
 
   const handleArtistClick = (artist: Artist) => {
     setSelectedArtistId(artist.id)
