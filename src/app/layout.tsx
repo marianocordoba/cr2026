@@ -3,19 +3,25 @@ import type { Metadata, Viewport } from 'next'
 import { Outfit } from 'next/font/google'
 
 import { Toaster } from '@/components/ui/sonner'
-import '@/styles/globals.css'
 import { env } from '@/env'
+import '@/styles/globals.css'
 
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-sans' })
 
+const SITE_NAME = 'Grilla Cosquín Rock 2026'
+const SITE_DESCRIPTION =
+  '¡Accedé a la grilla de artistas del Cosquín Rock 2026 y creá tu propio cronograma de shows!'
+
 export const metadata: Metadata = {
+  alternates: {
+    canonical: '/',
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: 'Grilla Cosquín Rock 2026',
+    title: SITE_NAME,
   },
-  description:
-    '¡Accedé a la grilla de artistas del Cosquín Rock 2026 y creá tu propio cronograma de shows!',
+  description: SITE_DESCRIPTION,
   formatDetection: {
     telephone: false,
   },
@@ -23,21 +29,50 @@ export const metadata: Metadata = {
     apple: [{ sizes: '180x180', url: '/icons/apple-touch-icon-180x180.png' }],
     shortcut: '/favicon.ico',
   },
-  keywords: '',
+  keywords: [
+    'cosquín rock',
+    'cosquín rock 2026',
+    'grilla cosquín rock',
+    'grilla cosquín rock 2026',
+    'cronograma cosquín rock',
+    'horarios cosquín rock',
+    'lineup cosquín rock 2026',
+    'festival rock argentina',
+    'festival cosquín',
+    'artistas cosquín rock',
+    'escenarios cosquín rock',
+    'febrero 2026',
+    '14 y 15 de febrero',
+  ],
   manifest: '/manifest.webmanifest',
+  metadataBase: new URL(env.NEXT_PUBLIC_BASE_URL),
   openGraph: {
-    description:
-      '¡Accedé a la grilla de artistas del Cosquín Rock 2026 y creá tu propio cronograma de shows!',
-    siteName: 'Grilla Cosquín Rock 2026',
-    title: 'Grilla Cosquín Rock 2026',
+    description: SITE_DESCRIPTION,
+    locale: 'es_AR',
+    siteName: SITE_NAME,
+    title: SITE_NAME,
     type: 'website',
     url: env.NEXT_PUBLIC_BASE_URL,
   },
-  robots: 'index, follow',
-  title: 'Grilla Cosquín Rock 2026',
+  robots: {
+    follow: true,
+    googleBot: {
+      follow: true,
+      index: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+    index: true,
+  },
+  title: {
+    default: SITE_NAME,
+    template: `%s | ${SITE_NAME}`,
+  },
   twitter: {
     card: 'summary_large_image',
-    site: env.NEXT_PUBLIC_BASE_URL,
+    description: SITE_DESCRIPTION,
+    title: SITE_NAME,
   },
 }
 
