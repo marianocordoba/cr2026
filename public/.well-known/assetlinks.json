@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "dev.cordoba.cr2026",
+      "sha256_cert_fingerprints": [
+        "30:65:C4:1F:62:98:29:7B:75:7B:14:AF:C8:9E:E4:58:A8:F4:4A:E6:90:F1:02:D1:2A:2D:F4:29:DE:40:D1:7E"
+      ]
+    }
+  }
+]

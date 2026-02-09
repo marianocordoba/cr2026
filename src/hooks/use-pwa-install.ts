@@ -30,13 +30,18 @@ export function usePWAInstall(): UsePWAInstallReturn {
 
     // Check if already installed
     const checkInstalled = (): boolean => {
-      // Check display-mode: standalone
+      // Check display-mode: standalone (covers PWA and most TWAs)
       if (window.matchMedia('(display-mode: standalone)').matches) {
         return true
       }
 
       // Check iOS standalone mode
       if ('standalone' in navigator && navigator.standalone === true) {
+        return true
+      }
+
+      // Check if running as a TWA (Android Trusted Web Activity)
+      if (document.referrer.startsWith('android-app://')) {
         return true
       }
 
