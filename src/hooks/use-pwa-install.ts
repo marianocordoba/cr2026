@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react'
 
+import { getDB } from '@/lib/idb'
+
 type PlatformType = 'ios' | 'android' | 'desktop' | 'unknown'
 
 interface BeforeInstallPromptEvent extends Event {
@@ -28,7 +30,7 @@ export function usePWAInstall(): UsePWAInstallReturn {
       return
     }
 
-    // Check if already installed
+    // Check if already installed (sync checks)
     const checkInstalled = (): boolean => {
       // Check display-mode: standalone (covers PWA and most TWAs)
       if (window.matchMedia('(display-mode: standalone)').matches) {
@@ -40,8 +42,20 @@ export function usePWAInstall(): UsePWAInstallReturn {
         return true
       }
 
-      // Check if running as a TWA (Android Trusted Web Activity)
+      return false
+    }
+
+    // Check if running as a TWA and persist the flag
+    const checkTWA = async (): Promise<boolean> => {
+      const db = await getDB()
+      const twa = await db.get('meta', 'twa')
+
+      if (twa) {
+        return true
+      }
+
       if (document.referrer.startsWith('android-app://')) {
+        await db.put('meta', { key: 'twa', value: '1' })
         return true
       }
 
@@ -77,8 +91,17 @@ export function usePWAInstall(): UsePWAInstallReturn {
       return 'unknown'
     }
 
-    setIsInstalled(checkInstalled())
+    const installed = checkInstalled()
+    setIsInstalled(installed)
     setPlatformType(detectPlatform())
+
+    if (!installed) {
+      checkTWA().then((isTWA) => {
+        if (isTWA) {
+          setIsInstalled(true)
+        }
+      })
+    }
 
     // Listen for beforeinstallprompt event
     const handleBeforeInstallPrompt = (e: Event) => {
